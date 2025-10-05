@@ -1,0 +1,15 @@
+.login-container {
+    max-width: 380px;
+    margin: 60px auto;
+    font-family: sans-serif;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.login-error {
+    color: red;
+}
