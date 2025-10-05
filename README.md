@@ -1,14 +1,4 @@
-<<<<<<< HEAD
-
 # 🚀 Sistema de Gestão - Narcóticos Anônimos (NA) - Frontend
-
-=======
-
-# Front end
-
-Para rodar esse projeto:
-
-> > > > > > > 17284fc3a55ddb414b3d533ac553d9d8396182f7
 
 Este é o repositório do frontend do nosso Projeto Integrador. Esta aplicação é responsável por toda a interface visual e interação do usuário com o sistema de gestão do grupo de NA.
 
@@ -53,12 +43,13 @@ Bora configurar o ambiente de desenvolvimento.
     - Preencha a variável `VITE_API_BASE_URL` com o endereço do seu backend rodando localmente (geralmente `http://localhost:3333`).
       ```env
       VITE_API_BASE_URL=http://localhost:3333
+      VITE_API_KEY=api_key_do_projeto
       ```
 
 3.  **Suba o servidor:** \* Rode o script de desenvolvimento (ele reinicia sozinho quando você salva!).
     `bash
-    npm run dev
-    `
+npm run dev
+`
     E pronto! O frontend estará rodando em `http://localhost:5173`.
 
 ### 👥 A Equipe
