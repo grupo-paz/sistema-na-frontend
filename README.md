@@ -9,7 +9,7 @@ Este é o repositório do frontend do nosso Projeto Integrador. Esta aplicação
 - **🔒 Páginas de Autenticação:** Telas para login de administradores e para definição de senha de novos usuários.
 - **🔐 Rotas Protegidas:** Acesso à área administrativa somente para usuários autenticados.
 - **➕ Cadastro de Admins:** Formulário para que administradores logados possam pré-cadastrar novos administradores no sistema.
-- **👀 (Futuro) Área Pública:** Telas para visualização de reuniões, eventos e dados da secretaria para membros do grupo sem a necessidade de login.
+- **👀 Área Pública:** Telas para visualização de reuniões, eventos e dados da secretaria para membros do grupo sem a necessidade de login.
 
 ### 🛠️ Nossa Stack
 
@@ -43,12 +43,13 @@ Bora configurar o ambiente de desenvolvimento.
     - Preencha a variável `VITE_API_BASE_URL` com o endereço do seu backend rodando localmente (geralmente `http://localhost:3333`).
       ```env
       VITE_API_BASE_URL=http://localhost:3333
+      VITE_API_KEY=api_key_do_projeto
       ```
 
 3.  **Suba o servidor:** \* Rode o script de desenvolvimento (ele reinicia sozinho quando você salva!).
     `bash
-        npm run dev
-        `
+npm run dev
+`
     E pronto! O frontend estará rodando em `http://localhost:5173`.
 
 ### 👥 A Equipe
