@@ -1,4 +1,14 @@
+<<<<<<< HEAD
+
 # 🚀 Sistema de Gestão - Narcóticos Anônimos (NA) - Frontend
+
+=======
+
+# Front end
+
+Para rodar esse projeto:
+
+> > > > > > > 17284fc3a55ddb414b3d533ac553d9d8396182f7
 
 Este é o repositório do frontend do nosso Projeto Integrador. Esta aplicação é responsável por toda a interface visual e interação do usuário com o sistema de gestão do grupo de NA.
 
@@ -9,7 +19,7 @@ Este é o repositório do frontend do nosso Projeto Integrador. Esta aplicação
 - **🔒 Páginas de Autenticação:** Telas para login de administradores e para definição de senha de novos usuários.
 - **🔐 Rotas Protegidas:** Acesso à área administrativa somente para usuários autenticados.
 - **➕ Cadastro de Admins:** Formulário para que administradores logados possam pré-cadastrar novos administradores no sistema.
-- **👀 (Futuro) Área Pública:** Telas para visualização de reuniões, eventos e dados da secretaria para membros do grupo sem a necessidade de login.
+- **👀 Área Pública:** Telas para visualização de reuniões, eventos e dados da secretaria para membros do grupo sem a necessidade de login.
 
 ### 🛠️ Nossa Stack
 
@@ -47,8 +57,8 @@ Bora configurar o ambiente de desenvolvimento.
 
 3.  **Suba o servidor:** \* Rode o script de desenvolvimento (ele reinicia sozinho quando você salva!).
     `bash
-        npm run dev
-        `
+    npm run dev
+    `
     E pronto! O frontend estará rodando em `http://localhost:5173`.
 
 ### 👥 A Equipe
