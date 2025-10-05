@@ -51,16 +51,16 @@ Guia para configurar o ambiente de desenvolvimento do frontend, já conectado ao
         ```
 
 3.  **Garanta que o Backend esteja a Rodar:**
-    * Para que o frontend funcione, o servidor do backend precisa de estar ativo. Siga o `README.md` do repositório do backend para o colocar no ar (geralmente na porta `3333`).
+    * Para que o frontend funcione, o servidor do backend precisa estar ativo. Siga o `README.md` do repositório do backend para o colocar no ar (geralmente na porta `3333`).
 
 4.  **Suba o servidor do frontend:**
-    * Com o backend já a rodar, execute o script de desenvolvimento do frontend:
+    * Com o backend já rodando, execute o script de desenvolvimento do frontend:
         ```bash
         npm run dev
         ```
-E pronto! O frontend estará a rodar em `http://localhost:5173`.
+E pronto! O frontend estará  rodando em `http://localhost:5173`.
 
-### 👥 A Equipa
+### 👥 A Equipe
 
 | Papel             | Quem é          |
 | ----------------- | --------------- |
