@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LoginPage } from "./pages/Login";
 import { AdminDashboard } from "./pages/AdminDashboard";
-import { DefinePasswordPage } from "./pages/definePasswordPage";
+import { DefinePasswordPage } from "./pages/DefinePasswordPage";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import { RootRedirect } from "./routes/RootRedirect";
 import "./App.css";
