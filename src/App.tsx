@@ -1,12 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { LoginPage } from "./pages/Login";
-import { AdminDashboard } from "./pages/AdminDashboard";
-import { AdminProfile } from "./pages/AdminProfile";
-import { AdminAdministrators } from "./pages/AdminAdministrators";
-import { DefinePasswordPage } from "./pages/DefinePasswordPage";
-import { ProtectedRoute } from "./routes/ProtectedRoute";
-import { RootRedirect } from "./routes/RootRedirect";
-import "./App.css";
+import { ProtectedRoute, RootRedirect } from "./routes";
+import { AdminAdministrators, Admin, AdminProfile, AdminDefinePassword, LoginPage } from "./pages";
 
 export default function App() {
   return (
@@ -14,9 +8,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<RootRedirect />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/define-password" element={<DefinePasswordPage />} />
+        <Route path="/define-password" element={<AdminDefinePassword />} />
         <Route element={<ProtectedRoute />}>
-          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/*" element={<Admin />} />
           <Route path="/admin/perfil" element={<AdminProfile />} />
           <Route path="/admin/administradores" element={<AdminAdministrators />} />
         </Route>

@@ -1,9 +1,9 @@
 import { FormEvent, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { login, authStorage } from "../services/api"
-import { Header } from "../components/Header"
+import { login, authStorage } from "../../services/api"
+import { Header } from "../../widgets/header/header"
 
-import "../stylesheets/LoginPage.css"
+import "./stylesheets/login.css"
 
 export function LoginPage() {
     const [email, setEmail] = useState("")
@@ -11,7 +11,7 @@ export function LoginPage() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const navigate = useNavigate()
-    
+
     useEffect(() => {
         if (authStorage.getAccessToken()) {
             navigate("/admin")
@@ -26,7 +26,7 @@ export function LoginPage() {
             await login(email, password)
             navigate("/admin")
         } catch (err: any) {
-            setError(err.message || "Falha no login")
+            setError(JSON.parse(err.message)?.error || "Falha no login")
         } finally {
             setLoading(false)
         }
@@ -38,26 +38,22 @@ export function LoginPage() {
             <div className="login-container">
                 <h2>Adm Grupo Paz</h2>
                 <form onSubmit={onSubmit} className="login-form">
-                    <label htmlFor="email">
-                        <input
-                            id="email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            type="email"
-                            placeholder="Login"
-                            aria-label="Email"
-                            required />
-                    </label>
-                    <label htmlFor="password">
-                        <input
-                            id="password"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                            type="password"
-                            placeholder="Senha"
-                            aria-label="Senha"
-                            required />
-                    </label>
+                    <input
+                        id="email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        type="email"
+                        placeholder="Login"
+                        aria-label="Email"
+                        required />
+                    <input
+                        id="password"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        type="password"
+                        placeholder="Senha"
+                        aria-label="Senha"
+                        required />
                     <button type="submit" disabled={loading}>
                         {loading ? "Entrando..." : "Entrar"}
                     </button>

@@ -1,0 +1,17 @@
+.admin-profile {
+    max-width: 1000px;
+    margin: 0 auto;
+    color: white;
+    margin-top: 20px;
+}
+
+.admin-profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.admin-profile-header h1 {
+    font-size: 34px;
+    margin: 0;
+    color: white;
+}
