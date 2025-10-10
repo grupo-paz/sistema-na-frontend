@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockNavigate,
 }));
 
-jest.mock('../../../components/Header', () => ({
+jest.mock('../../../widgets/header/header', () => ({
     Header: () => ({
         type: 'div',
         props: { 'data-testid': 'header', children: 'Header' },
@@ -207,7 +207,7 @@ describe('LoginPage', () => {
             });
 
             it('should display default error message when API error has no message', async () => {
-                const networkError = new Error('{}'); // JSON válido mas vazio
+                const networkError = new Error('{}');
                 login.mockRejectedValue(networkError);
 
                 fillLoginForm('admin@test.com', 'password123');
