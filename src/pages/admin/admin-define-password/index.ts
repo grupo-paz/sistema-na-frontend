@@ -1,0 +1,1 @@
+export { AdminDefinePassword } from "./admin-define-password";

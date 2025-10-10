@@ -1,8 +1,8 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { authStorage } from "../services/api";
+import { authStorage } from "../../services/api";
 
-import "../stylesheets/Header.css";
+import "./stylesheets/header.css";
 
 export function Header() {
   const navigate = useNavigate();

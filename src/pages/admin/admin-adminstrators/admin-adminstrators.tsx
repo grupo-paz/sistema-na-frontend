@@ -1,14 +1,8 @@
-import { FormEvent, useState, useEffect } from "react";
-import { registerAdmin } from "../services/api";
-import { Header } from "../components/Header";
-import "../stylesheets/AdminPages.css";
+import { FormEvent, useState } from "react";
+import { registerAdmin } from "../../../services/api";
+import { Header } from "../../../widgets";
 
-interface Admin {
-    id: string;
-    name: string;
-    email: string;
-    createdAt: string;
-}
+import "./stylesheets/admin-adminstrators.css";
 
 export function AdminAdministrators() {
     const [name, setName] = useState("");

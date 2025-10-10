@@ -1,9 +1,10 @@
 import { FormEvent, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { definePassword, authStorage } from "../services/api";
-import "../stylesheets/DefinePasswordPage.css";
+import { definePassword, authStorage } from "../../../services/api";
 
-export function DefinePasswordPage() {
+import "./stylesheets/admin-define-password.css";
+
+export function AdminDefinePassword() {
   const [search] = useSearchParams();
   const navigate = useNavigate();
 
