@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { authStorage } from "../../services/api";
+import { authStorage } from "../../services";
 
 import "./stylesheets/header.css";
 

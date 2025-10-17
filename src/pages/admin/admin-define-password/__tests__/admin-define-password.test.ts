@@ -1,6 +1,7 @@
 import React from 'react';
+import '@testing-library/jest-dom';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { definePassword } from '../../../../services/api';
+import { definePassword } from '../../../../services';
 
 const mockNavigate = jest.fn();
 const mockSearchParams = { get: jest.fn() };
@@ -11,7 +12,7 @@ jest.mock('react-router-dom', () => ({
     useSearchParams: () => [mockSearchParams],
 }));
 
-jest.mock('../../../../services/api', () => ({
+jest.mock('../../../../services', () => ({
     definePassword: jest.fn(),
     authStorage: {
         clear: jest.fn(),
@@ -44,7 +45,7 @@ describe('AdminDefinePassword', () => {
     });
 
     it('should call definePassword and show message on success', async () => {
-        definePassword.mockResolvedValue({ message: 'Senha definida!' });
+        (definePassword as jest.Mock).mockResolvedValue({ message: 'Senha definida!' });
         renderComponent();
         fireEvent.change(screen.getByLabelText('Nova Senha'), { target: { value: '123456' } });
         fireEvent.click(screen.getByRole('button'));
@@ -55,7 +56,7 @@ describe('AdminDefinePassword', () => {
     });
 
     it('should show error on API failure', async () => {
-        definePassword.mockRejectedValue(new Error('Erro ao definir a senha.'));
+        (definePassword as jest.Mock).mockRejectedValue(new Error('Erro ao definir a senha.'));
         renderComponent();
         fireEvent.change(screen.getByLabelText('Nova Senha'), { target: { value: '123456' } });
         fireEvent.click(screen.getByRole('button'));

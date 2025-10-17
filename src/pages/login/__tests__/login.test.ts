@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { login, authStorage } from '../../../services/api';
+import { login, authStorage } from '../../../services';
 
 const mockNavigate = jest.fn();
 
-jest.mock('../../../services/api', () => ({
+jest.mock('../../../services', () => ({
     login: jest.fn(),
     authStorage: {
         getAccessToken: jest.fn(),
@@ -16,14 +16,17 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockNavigate,
 }));
 
-jest.mock('../../../widgets/header/header', () => ({
-    Header: () => ({
-        type: 'div',
-        props: { 'data-testid': 'header', children: 'Header' },
-        key: null,
-        ref: null,
-        $$typeof: Symbol.for('react.element')
-    }),
+// Mock o Header
+jest.mock('../../../components/header/header', () => ({
+    Header: function MockHeader() {
+        return {
+            $$typeof: Symbol.for('react.element'),
+            type: 'div',
+            key: null,
+            ref: null,
+            props: { 'data-testid': 'header', children: 'Mock Header' }
+        };
+    }
 }));
 
 const renderLoginPage = () => {
@@ -37,7 +40,7 @@ const renderLoginPage = () => {
     );
 };
 
-const fillLoginForm = (email, password) => {
+const fillLoginForm = (email: string, password: string) => {
     const emailInput = screen.getByPlaceholderText('Login');
     const passwordInput = screen.getByPlaceholderText('Senha');
 
@@ -53,7 +56,7 @@ const submitForm = () => {
     return submitButton;
 };
 
-const expectErrorMessage = async (message) => {
+const expectErrorMessage = async (message: string) => {
     await waitFor(() => {
         expect(screen.getByText(message)).toBeInTheDocument();
     });
@@ -64,13 +67,13 @@ const expectLoadingState = () => {
     expect(screen.getByRole('button', { name: /entrando/i })).toBeDisabled();
 };
 
-const expectLoginServiceCall = async (email, password) => {
+const expectLoginServiceCall = async (email: string, password: string) => {
     await waitFor(() => {
         expect(login).toHaveBeenCalledWith(email, password);
     });
 };
 
-const expectNoErrorMessage = async (message) => {
+const expectNoErrorMessage = async (message: string) => {
     await waitFor(() => {
         expect(screen.queryByText(message)).not.toBeInTheDocument();
     });
@@ -91,7 +94,7 @@ describe('LoginPage', () => {
     describe('when rendered', () => {
         beforeEach(() => {
             jest.clearAllMocks();
-            authStorage.getAccessToken.mockReturnValue(null);
+            (authStorage.getAccessToken as jest.Mock).mockReturnValue(null);
         });
 
         describe('and component mounts', () => {
@@ -130,17 +133,17 @@ describe('LoginPage', () => {
             it('should update email input value when typed', () => {
                 const emailInput = screen.getByPlaceholderText('Login');
                 fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
-                expect(emailInput.value).toBe('test@example.com');
+                expect((emailInput as HTMLInputElement).value).toBe('test@example.com');
             });
 
             it('should update password input value when typed', () => {
                 const passwordInput = screen.getByPlaceholderText('Senha');
                 fireEvent.change(passwordInput, { target: { value: 'password123' } });
-                expect(passwordInput.value).toBe('password123');
+                expect((passwordInput as HTMLInputElement).value).toBe('password123');
             });
 
             it('should handle form submission correctly', async () => {
-                login.mockResolvedValue({ accessToken: 'mock-token' });
+                (login as jest.Mock).mockResolvedValue({ accessToken: 'mock-token' });
                 fillLoginForm('admin@test.com', 'password123');
                 submitForm();
 
@@ -154,7 +157,7 @@ describe('LoginPage', () => {
             });
 
             it('should call login service with correct credentials', async () => {
-                login.mockResolvedValue({ accessToken: 'mock-token' });
+                (login as jest.Mock).mockResolvedValue({ accessToken: 'mock-token' });
                 fillLoginForm('admin@test.com', 'password123');
                 submitForm();
 
@@ -162,7 +165,7 @@ describe('LoginPage', () => {
             });
 
             it('should show loading state during submission', async () => {
-                login.mockImplementation(mockDelayedLogin);
+                (login as jest.Mock).mockImplementation(mockDelayedLogin);
 
                 fillLoginForm('admin@test.com', 'password123');
                 submitForm();
@@ -172,7 +175,7 @@ describe('LoginPage', () => {
 
             it('should clear error state when submitting', async () => {
                 const errorResponse = new Error(JSON.stringify({ error: 'Previous error' }));
-                login.mockRejectedValueOnce(errorResponse)
+                (login as jest.Mock).mockRejectedValueOnce(errorResponse)
                     .mockResolvedValue({ accessToken: 'mock-token' });
 
                 fillLoginForm('admin@test.com', 'wrong-password');
@@ -197,7 +200,7 @@ describe('LoginPage', () => {
             it('should display error message from API response', async () => {
                 const errorMessage = 'Credenciais inválidas';
                 const errorResponse = new Error(JSON.stringify({ error: errorMessage }));
-                login.mockRejectedValue(errorResponse);
+                (login as jest.Mock).mockRejectedValue(errorResponse);
 
                 fillLoginForm('admin@test.com', 'wrong-password');
                 submitForm();
@@ -208,7 +211,7 @@ describe('LoginPage', () => {
 
             it('should display default error message when API error has no message', async () => {
                 const networkError = new Error('{}');
-                login.mockRejectedValue(networkError);
+                (login as jest.Mock).mockRejectedValue(networkError);
 
                 fillLoginForm('admin@test.com', 'password123');
                 submitForm();
@@ -218,7 +221,7 @@ describe('LoginPage', () => {
 
             it('should restore button state after error', async () => {
                 const errorResponse = new Error(JSON.stringify({ error: 'Login failed' }));
-                login.mockRejectedValue(errorResponse);
+                (login as jest.Mock).mockRejectedValue(errorResponse);
 
                 fillLoginForm('admin@test.com', 'password123');
                 const submitButton = submitForm();
@@ -231,7 +234,7 @@ describe('LoginPage', () => {
 
         describe('and user is already authenticated', () => {
             beforeEach(() => {
-                authStorage.getAccessToken.mockReturnValue('existing-token');
+                (authStorage.getAccessToken as jest.Mock).mockReturnValue('existing-token');
                 renderLoginPage();
             });
 

@@ -1,1 +1,1 @@
-export { AdminAdministrators } from "./admin-adminstrators";
+export { default as AdminAdministrators } from "./admin-adminstrators";

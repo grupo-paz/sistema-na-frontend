@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-jest.mock('../../../../widgets/header/header', () => ({
+jest.mock('../../../../components/header', () => ({
     Header: () => ({
         type: 'div',
         props: { 'data-testid': 'header', children: 'Header' },

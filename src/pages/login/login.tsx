@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { login, authStorage } from "../../services/api"
-import { Header } from "../../widgets/header/header"
+import { login, authStorage } from "../../services"
+import { Header } from "../../components/header/header"
 
 import "./stylesheets/login.css"
 

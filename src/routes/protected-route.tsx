@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom"
-import { authStorage } from "../services/api"
+import { authStorage } from "../services"
 
 export function ProtectedRoute() {
     const access = authStorage.getAccessToken()
