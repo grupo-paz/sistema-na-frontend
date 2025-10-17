@@ -14,7 +14,7 @@ jest.mock('react-router-dom', () => ({
     useLocation: () => mockLocation,
 }));
 
-jest.mock('../../../services/api', () => ({
+jest.mock('../../../services', () => ({
     authStorage: {
         getAccessToken: jest.fn(),
         clear: jest.fn(),
@@ -25,7 +25,7 @@ describe('Header', () => {
     const renderComponent = (isAuthenticated = true, pathname = '/admin/perfil') => {
         mockAuthStorage.getAccessToken.mockReturnValue(isAuthenticated ? 'token' : undefined);
         mockLocation.pathname = pathname;
-        jest.requireMock('../../../services/api').authStorage.getAccessToken.mockReturnValue(isAuthenticated ? 'token' : undefined);
+        jest.requireMock('../../../services').authStorage.getAccessToken.mockReturnValue(isAuthenticated ? 'token' : undefined);
         const { Header } = require('../header');
         return render(React.createElement(Header));
     };
@@ -53,7 +53,7 @@ describe('Header', () => {
             it('should clear auth and navigate to /login on logout', () => {
                 renderComponent(true, '/admin/perfil');
                 fireEvent.click(screen.getByText('Sair'));
-                expect(jest.requireMock('../../../services/api').authStorage.clear).toHaveBeenCalled();
+                expect(jest.requireMock('../../../services').authStorage.clear).toHaveBeenCalled();
                 expect(mockNavigate).toHaveBeenCalledWith('/login');
             });
         });

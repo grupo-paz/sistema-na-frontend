@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { authStorage } from "../services/api";
+import { authStorage } from "../services";
 
 export function RootRedirect() {
   const hasToken = authStorage.getAccessToken();

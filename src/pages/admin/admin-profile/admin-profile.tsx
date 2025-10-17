@@ -1,4 +1,4 @@
-import { Header } from "../../../widgets";
+import { Header } from "../../../components";
 import "./stylesheets/admin-profile.css";
 
 export function AdminProfile() {

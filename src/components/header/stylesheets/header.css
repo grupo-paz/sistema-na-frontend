@@ -2,7 +2,7 @@
   position: relative;
   background: rgba(3, 20, 77, 0.95);
   backdrop-filter: blur(10px);
-  z-index: 1000;
+  z-index: 2;
   padding: 0;
   width: 100%;
 }

@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { definePassword, authStorage } from "../../../services/api";
+import { definePassword, authStorage } from "../../../services";
 
 import "./stylesheets/admin-define-password.css";
 

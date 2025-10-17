@@ -1,14 +1,35 @@
-import { FormEvent, useState } from "react";
-import { registerAdmin } from "../../../services/api";
-import { Header } from "../../../widgets";
+
+import React, { FormEvent, useEffect, useState } from "react";
+import { getAdmins, registerAdmin, removeAdmin } from "../../../services";
+import { Admin } from "../../../models";
+import { Loading, withConfirmModal, ConfirmModalOptions, Header } from "../../../components";
 
 import "./stylesheets/admin-adminstrators.css";
 
-export function AdminAdministrators() {
+const AdminAdministrators: React.FC<{ showConfirm: (options: ConfirmModalOptions) => void }> = ({ showConfirm }) => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState<string | null>(null);
+    const [admins, setAdmins] = useState<Admin[]>([]);
+
+    useEffect(() => {
+        async function fetchAdmins() {
+            setLoading(true);
+            try {
+                const res = await getAdmins();
+                setAdmins(res); 
+            } catch (e) {
+                console.error("Erro ao buscar administradores:", e);
+                setMessage("Erro ao buscar administradores");
+
+            }
+            finally {
+                setLoading(false);
+            }
+        }
+        fetchAdmins();
+    }, []);
 
     async function onSubmit(e: FormEvent) {
         e.preventDefault();
@@ -19,6 +40,9 @@ export function AdminAdministrators() {
             setMessage(res.message);
             setName("");
             setEmail("");
+
+            const updated = await getAdmins();
+            setAdmins(updated);
         } catch (e: any) {
             setMessage(e.message || "Erro");
         } finally {
@@ -26,14 +50,56 @@ export function AdminAdministrators() {
         }
     }
 
+    function handleRemove(admin: Admin) {
+        showConfirm({
+            title: "Remover administrador",
+            message: `Tem certeza que deseja remover ${admin.name}?`,
+            confirmText: "Remover",
+            cancelText: "Cancelar",
+            onConfirm: () => {
+                setLoading(true);
+
+                removeAdmin(admin.id)
+                    .then(() => {
+                        setAdmins((prev) => prev.filter((a) => a.id !== admin.id));
+                    })
+                    .catch((e: any) => {
+                        alert(`Erro ao remover administrador: ${e?.message || e}`);
+                    })
+                    .finally(() => {
+                        setLoading(false);
+                    });
+            },
+        });
+    }
+
     return (
         <>
+            {loading && <Loading />}
             <Header />
             <div className="admin-page-content">
                 <div className="admin-page-header">
                     <h1>Administradores</h1>
                 </div>
-
+                <div className="admin-list-section">
+                    <ul className="admin-list">
+                       
+                        {admins.length === 0 && !loading && <li>Nenhum administrador cadastrado.</li>}
+                        {admins.map((admin) => (
+                            <li key={admin.id || admin.email} className="admin-card">
+                                <div className="admin-info">
+                                    <span className="admin-name">{admin.name}</span>
+                                    <span className="admin-email">{admin.email}</span>
+                                </div>
+                                <div className="admin-actions">
+                                    <button className="admin-action-btn" title="Remover" onClick={() => handleRemove(admin)}>
+                                        <svg viewBox="0 0 24 24"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6zm3.46-8.12a1 1 0 0 1 1.41 0L12 11.59l1.12-1.12a1 1 0 1 1 1.41 1.41L13.41 13l1.12 1.12a1 1 0 0 1-1.41 1.41L12 14.41l-1.12 1.12a1 1 0 0 1-1.41-1.41L10.59 13l-1.12-1.12a1 1 0 0 1 0-1.41z"/></svg>
+                                    </button>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
                 <div className="admin-form-section">
                     <h3>Adicionar Novo Administrador</h3>
                     <form onSubmit={onSubmit} className="admin-form">
@@ -67,3 +133,5 @@ export function AdminAdministrators() {
         </>
     );
 }
+
+export default withConfirmModal(AdminAdministrators);
