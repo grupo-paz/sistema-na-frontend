@@ -35,7 +35,7 @@ export function LoginPage() {
     return (
         <>
             <Header />
-            <div className="login-container">
+            <div className="page-content login-container">
                 <h2>Adm Grupo Paz</h2>
                 <form onSubmit={onSubmit} className="login-form">
                     <input

@@ -1,3 +1,27 @@
+/**
+ * Atualiza dados do administrador (nome, email, etc)
+ * @param id ID do administrador
+ * @param data Objeto parcial com campos a atualizar (name, email, etc)
+ * @returns Mensagem de sucesso ou erro
+ */
+export async function updateAdmin(id: string, data: Partial<Admin>) {
+  return request<MessageResponse>(`/admins/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", "x-api-key": API_KEY },
+    body: JSON.stringify(data),
+  });
+}
+/**
+ * Obtém um administrador pelo ID
+ * @param id ID do administrador
+ * @returns Objeto Admin
+ */
+export async function getAdminById(id: string) {
+  return request<Admin>(`/admins/${id}`, {
+    method: "GET",
+    headers: { "x-api-key": API_KEY },
+  });
+}
 // admin.ts - Serviço relacionado aos administradores
 
 import { API_KEY, request } from "./base";

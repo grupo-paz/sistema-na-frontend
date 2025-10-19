@@ -4,16 +4,16 @@ export const API_KEY = "test-api-key";
 export const authStorage = {
   getAccessToken: jest.fn(() => localStorage.getItem("accessToken")),
   getRefreshToken: jest.fn(() => localStorage.getItem("refreshToken")),
-  getEmail: jest.fn(() => localStorage.getItem("userEmail")),
+  getAdminId: jest.fn(() => localStorage.getItem("adminId")),
   setTokens: jest.fn((access, refresh) => {
     localStorage.setItem("accessToken", access);
     localStorage.setItem("refreshToken", refresh);
   }),
-  setEmail: jest.fn((email) => localStorage.setItem("userEmail", email)),
+  setAdminId: jest.fn((id) => localStorage.setItem("adminId", id)),
   clear: jest.fn(() => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-    localStorage.removeItem("userEmail");
+    localStorage.removeItem("adminId");
   }),
 };
 

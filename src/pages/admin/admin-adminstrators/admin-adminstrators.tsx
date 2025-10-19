@@ -77,7 +77,7 @@ const AdminAdministrators: React.FC<{ showConfirm: (options: ConfirmModalOptions
         <>
             {loading && <Loading />}
             <Header />
-            <div className="admin-page-content">
+            <div className="page-content">
                 <div className="admin-page-header">
                     <h1>Administradores</h1>
                 </div>

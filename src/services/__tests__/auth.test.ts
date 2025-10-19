@@ -15,7 +15,8 @@ describe('Service: Authentication', () => {
         const mockLoginResponse: LoginResponse = { 
           message: "Login bem-sucedido", 
           accessToken: "test-access-token", 
-          refreshToken: "test-refresh-token" 
+          refreshToken: "test-refresh-token",
+          admin: { id: "admin-123", name: "Test Admin", email: "test@example.com" }
         };
         
         (base.request as jest.Mock).mockResolvedValue(mockLoginResponse);
@@ -38,7 +39,8 @@ describe('Service: Authentication', () => {
         const mockLoginResponse: LoginResponse = { 
           message: "Login bem-sucedido", 
           accessToken: "test-access-token", 
-          refreshToken: "test-refresh-token" 
+          refreshToken: "test-refresh-token" ,
+          admin: { id: "admin-123", name: "Test Admin", email: "aaa@test.com" }
         };
         
         (base.request as jest.Mock).mockResolvedValue(mockLoginResponse);
@@ -49,8 +51,8 @@ describe('Service: Authentication', () => {
           "test-access-token", 
           "test-refresh-token"
         );
-        
-        expect(base.authStorage.setEmail).toHaveBeenCalledWith("test@example.com");
+
+        expect(base.authStorage.setAdminId).toHaveBeenCalledWith("admin-123");
       });
     });
 
