@@ -5,16 +5,16 @@ export const API_KEY = import.meta.env.VITE_API_KEY || "";
 export const authStorage = {
   getAccessToken: () => localStorage.getItem("accessToken"),
   getRefreshToken: () => localStorage.getItem("refreshToken"),
-  getEmail: () => localStorage.getItem("userEmail"),
+  getAdminId: () => localStorage.getItem("adminId"),
   setTokens: (access: string, refresh: string) => {
     localStorage.setItem("accessToken", access);
     localStorage.setItem("refreshToken", refresh);
   },
-  setEmail: (email: string) => localStorage.setItem("userEmail", email),
+  setAdminId: (adminId: string) => localStorage.setItem("adminId", adminId),
   clear: () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-    localStorage.removeItem("userEmail");
+    localStorage.removeItem("adminId");
   },
 };
 

@@ -16,7 +16,7 @@ export async function login(email: string, password: string) {
   });
 
   authStorage.setTokens(data.accessToken, data.refreshToken);
-  authStorage.setEmail(email);
+  authStorage.setAdminId(data.admin.id);
   return data;
 }
 
@@ -32,6 +32,22 @@ export async function definePassword(token: string, password: string) {
     headers: { "Content-Type": "application/json", "x-api-key": API_KEY },
     body: JSON.stringify({ token, password }),
     skipAuth: true,
+  });
+}
+
+/**
+ * Altera a senha de um administrador
+ * @param adminId ID do administrador
+ * @param currentPassword Senha atual
+ * @param newPassword Nova senha
+ * @returns Mensagem de sucesso ou erro
+ */
+export async function changeAdminPassword(adminId: string, currentPassword: string, newPassword: string) {
+  console.log("Changing password for admin:", adminId);
+  return request<MessageResponse>(`/admins/change-password`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "x-api-key": API_KEY },
+    body: JSON.stringify({ adminId, currentPassword, newPassword }),
   });
 }
 

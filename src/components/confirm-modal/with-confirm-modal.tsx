@@ -7,6 +7,7 @@ export interface ConfirmModalOptions {
   confirmText?: string;
   cancelText?: string;
   onConfirm?: () => void;
+  oneButton?: boolean;
 }
 
 export function withConfirmModal<P>(Component: ComponentType<P & { showConfirm: (options: ConfirmModalOptions) => void }>) {
@@ -41,6 +42,7 @@ export function withConfirmModal<P>(Component: ComponentType<P & { showConfirm: 
           cancelText={modalOptions?.cancelText}
           onConfirm={handleConfirm}
           onCancel={handleCancel}
+          oneButton={modalOptions?.oneButton}
         />
       </>
     );

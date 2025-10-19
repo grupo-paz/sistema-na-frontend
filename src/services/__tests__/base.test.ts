@@ -36,21 +36,21 @@ describe('Service: Base API', () => {
         expect(localStorageMock.setItem).toHaveBeenCalledWith('refreshToken', 'test-refresh');
       });
       
-      it('should store and retrieve user email correctly', () => {
-        authStorage.setEmail('test@example.com');
+      it('should store and retrieve admin ID correctly', () => {
+        authStorage.setAdminId('admin-123');
         
-        expect(localStorageMock.setItem).toHaveBeenCalledWith('userEmail', 'test@example.com');
+        expect(localStorageMock.setItem).toHaveBeenCalledWith('adminId', 'admin-123');
       });
       
       it('should clear all authentication data correctly', () => {
         authStorage.setTokens('test-access', 'test-refresh');
-        authStorage.setEmail('test@example.com');
+        authStorage.setAdminId('admin-123');
         
         authStorage.clear();
         
         expect(localStorageMock.removeItem).toHaveBeenCalledWith('accessToken');
         expect(localStorageMock.removeItem).toHaveBeenCalledWith('refreshToken');
-        expect(localStorageMock.removeItem).toHaveBeenCalledWith('userEmail');
+        expect(localStorageMock.removeItem).toHaveBeenCalledWith('adminId');
       });
     });
   });

@@ -36,9 +36,9 @@ describe('API Module - Mocked Modules', () => {
   it('should have authStorage with all expected methods', () => {
     expect(baseModule.authStorage.getAccessToken).toBeDefined();
     expect(baseModule.authStorage.getRefreshToken).toBeDefined();
-    expect(baseModule.authStorage.getEmail).toBeDefined();
+    expect(baseModule.authStorage.getAdminId).toBeDefined();
     expect(baseModule.authStorage.setTokens).toBeDefined();
-    expect(baseModule.authStorage.setEmail).toBeDefined();
+    expect(baseModule.authStorage.setAdminId).toBeDefined();
     expect(baseModule.authStorage.clear).toBeDefined();
   });
 });

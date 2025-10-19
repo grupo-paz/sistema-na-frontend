@@ -11,6 +11,7 @@ interface ConfirmModalProps {
   cancelText?: string;
   onConfirm: () => void;
   onCancel: () => void;
+  oneButton?: boolean;
 }
 
 export const ConfirmModal: React.FC<ConfirmModalProps> = ({
@@ -21,6 +22,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
   cancelText = "Cancelar",
   onConfirm,
   onCancel,
+  oneButton = false,
 }) => {
   if (!open) return null;
   return (
@@ -30,7 +32,7 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
         <p>{message}</p>
         <div className="modal-actions">
           <button className="confirm" onClick={onConfirm}>{confirmText}</button>
-          <button className="cancel" onClick={onCancel}>{cancelText}</button>
+          {!oneButton && <button className="cancel" onClick={onCancel}>{cancelText}</button>}
         </div>
       </div>
     </div>

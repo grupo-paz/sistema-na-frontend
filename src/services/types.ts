@@ -2,6 +2,7 @@ export interface LoginResponse {
   message: string;
   accessToken: string;
   refreshToken: string;
+  admin: Admin;
 }
 
 export interface RegisterAdminBody {
