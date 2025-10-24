@@ -14,14 +14,17 @@ export function AdminProfile() {
     const [admin, setAdmin] = useState<Admin | null>(null);
     const [loading, setLoading] = useState(false);
     const [editMode, setEditMode] = useState(false);
-    const [message, setMessage] = useState<string | null>(null);
+    const [message, setMessage] = useState({
+        error: false,
+        text: ""
+    });
     const navigate = useNavigate();
 
     const fetchProfile = async () => {
         setLoading(true);
         const adminId = authStorage.getAdminId();
         if (!adminId) {
-            setMessage("ID do administrador não encontrado.");
+            setMessage({ error: true, text: "ID do administrador não encontrado." });
             setLoading(false);
             return;
         }
@@ -32,7 +35,7 @@ export function AdminProfile() {
             setName(admin.name);
             setEmail(admin.email);
         } catch {
-            setMessage("Erro ao carregar perfil.");
+            setMessage({ error: true, text: "Erro ao carregar perfil." });
         } finally {
             setLoading(false);
         }
@@ -53,13 +56,13 @@ export function AdminProfile() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        setMessage(null);
+        setMessage({ error: false, text: "" });
         try {
             await updateAdmin(id, { name, email });
             setEditMode(false);
-            setMessage("Perfil atualizado com sucesso!");
+            setMessage({ error: false, text: "Perfil atualizado com sucesso!" });
         } catch {
-            setMessage("Erro ao atualizar perfil.");
+            setMessage({ error: true, text: "Erro ao atualizar perfil." });
         } finally {
             setLoading(false);
         }
@@ -120,7 +123,7 @@ export function AdminProfile() {
                                 </>
                             }
                         </div>
-                        {message && <div className="form-message">{message}</div>}
+                    {message?.text && <p className={message.error ? "form-message-error" : "form-message-success"}>{message.text}</p>}
                     </form>
                 </div>
             </div>

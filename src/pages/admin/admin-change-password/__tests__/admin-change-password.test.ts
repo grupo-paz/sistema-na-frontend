@@ -44,19 +44,27 @@ jest.mock('../../../../components', () => {
             ref: null,
             $$typeof: Symbol.for('react.element')
         }),
+        Loading: () => ({
+            type: 'div',
+            props: { 'data-testid': 'loading', children: 'Carregando...' },
+            key: null,
+            ref: null,
+            $$typeof: Symbol.for('react.element')
+        }),
         withConfirmModal: mockWithConfirmModal,
         ConfirmModalOptions: {}
     };
 });
 
-describe('ChangePasswordPage', () => {
+describe('AdminChangePassword', () => {
     const renderComponent = () => {
-        const ChangePasswordPage = require('../change-password').default;
+        const ChangePasswordPage = require('../admin-change-password').default;
         return render(React.createElement(ChangePasswordPage));
     };
 
     beforeEach(() => {
         jest.clearAllMocks();
+        mockAuthStorage.getAdminId.mockReturnValue('123');
         mockChangeAdminPassword.mockResolvedValue({ message: 'Senha alterada com sucesso!' });
     });
 
@@ -112,7 +120,10 @@ describe('ChangePasswordPage', () => {
     });
     
     it('should handle error when password change fails', async () => {
-        mockChangeAdminPassword.mockRejectedValue(new Error('Senha atual incorreta'));
+        const errorMessage = JSON.stringify({
+            issues: [{ message: 'Erro interno do servidor' }]
+        });
+        mockChangeAdminPassword.mockRejectedValue(new Error(errorMessage));
         
         renderComponent();
         
@@ -123,7 +134,72 @@ describe('ChangePasswordPage', () => {
         fireEvent.click(screen.getByText('Salvar'));
         
         await waitFor(() => {
-            expect(screen.getByText(/Erro ao alterar senha/)).toBeInTheDocument();
+            expect(screen.getByText('Erro ao alterar senha. Erro interno do servidor')).toBeInTheDocument();
+        });
+    });
+
+    it('should show loading component when submitting', async () => {
+        mockChangeAdminPassword.mockImplementation(() => new Promise(resolve => {
+            setTimeout(() => resolve({ message: 'Sucesso' }), 100);
+        }));
+        
+        renderComponent();
+        
+        fireEvent.change(screen.getByLabelText('Senha Atual'), { target: { value: 'senha123' } });
+        fireEvent.change(screen.getByLabelText('Nova Senha'), { target: { value: 'novaSenha123' } });
+        fireEvent.change(screen.getByLabelText('Confirmar Nova Senha'), { target: { value: 'novaSenha123' } });
+        
+        fireEvent.click(screen.getByText('Salvar'));
+        
+        // Verifica se o loading aparece
+        expect(screen.getByTestId('loading')).toBeInTheDocument();
+        expect(screen.getByText('Salvando...')).toBeInTheDocument();
+        
+        // Aguarda finalizar
+        await waitFor(() => {
+            expect(mockShowConfirm).toHaveBeenCalled();
+        });
+    });
+
+    it('should clear form fields after successful password change', async () => {
+        renderComponent();
+        
+        const currentPasswordInput = screen.getByLabelText('Senha Atual');
+        const newPasswordInput = screen.getByLabelText('Nova Senha');
+        const confirmPasswordInput = screen.getByLabelText('Confirmar Nova Senha');
+        
+        fireEvent.change(currentPasswordInput, { target: { value: 'senha123' } });
+        fireEvent.change(newPasswordInput, { target: { value: 'novaSenha123' } });
+        fireEvent.change(confirmPasswordInput, { target: { value: 'novaSenha123' } });
+        
+        fireEvent.click(screen.getByText('Salvar'));
+        
+        await waitFor(() => {
+            expect(mockShowConfirm).toHaveBeenCalled();
+        });
+        
+        // Verifica se os campos foram limpos
+        expect(currentPasswordInput).toHaveValue('');
+        expect(newPasswordInput).toHaveValue('');
+        expect(confirmPasswordInput).toHaveValue('');
+    });
+
+    it('should handle API error with proper JSON format', async () => {
+        const errorMessage = JSON.stringify({
+            issues: [{ message: 'Senha atual incorreta' }]
+        });
+        mockChangeAdminPassword.mockRejectedValue(new Error(errorMessage));
+        
+        renderComponent();
+        
+        fireEvent.change(screen.getByLabelText('Senha Atual'), { target: { value: 'senha123' } });
+        fireEvent.change(screen.getByLabelText('Nova Senha'), { target: { value: 'novaSenha123' } });
+        fireEvent.change(screen.getByLabelText('Confirmar Nova Senha'), { target: { value: 'novaSenha123' } });
+        
+        fireEvent.click(screen.getByText('Salvar'));
+        
+        await waitFor(() => {
+            expect(screen.getByText('Erro ao alterar senha. Senha atual incorreta')).toBeInTheDocument();
         });
     });
 });

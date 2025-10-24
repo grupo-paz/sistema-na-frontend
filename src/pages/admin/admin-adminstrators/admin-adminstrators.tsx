@@ -10,7 +10,10 @@ const AdminAdministrators: React.FC<{ showConfirm: (options: ConfirmModalOptions
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState<string | null>(null);
+    const [message, setMessage] = useState({
+        error: false,
+        text: ""
+    });
     const [admins, setAdmins] = useState<Admin[]>([]);
 
     useEffect(() => {
@@ -21,8 +24,7 @@ const AdminAdministrators: React.FC<{ showConfirm: (options: ConfirmModalOptions
                 setAdmins(res); 
             } catch (e) {
                 console.error("Erro ao buscar administradores:", e);
-                setMessage("Erro ao buscar administradores");
-
+                setMessage({ error: true, text: "Erro ao carregar administradores." });
             }
             finally {
                 setLoading(false);
@@ -34,17 +36,17 @@ const AdminAdministrators: React.FC<{ showConfirm: (options: ConfirmModalOptions
     async function onSubmit(e: FormEvent) {
         e.preventDefault();
         setLoading(true);
-        setMessage(null);
+        setMessage({ error: false, text: "" });
         try {
             const res = await registerAdmin({ name, email });
-            setMessage(res.message);
+            setMessage({ error: false, text: res.message });
             setName("");
             setEmail("");
 
             const updated = await getAdmins();
             setAdmins(updated);
         } catch (e: any) {
-            setMessage(e.message || "Erro");
+            setMessage({ error: true, text: e.message || "Erro" });
         } finally {
             setLoading(false);
         }
@@ -127,7 +129,7 @@ const AdminAdministrators: React.FC<{ showConfirm: (options: ConfirmModalOptions
                             {loading ? "Adicionando..." : "Adicionar"}
                         </button>
                     </form>
-                    {message && <p className="form-message">{message}</p>}
+                    {message?.text && <p className={message.error ? "form-message-error" : "form-message-success"}>{message.text}</p>}
                 </div>
             </div>
         </>
