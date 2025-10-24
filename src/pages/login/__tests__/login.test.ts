@@ -16,7 +16,6 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockNavigate,
 }));
 
-// Mock o Header
 jest.mock('../../../components/header/header', () => ({
     Header: function MockHeader() {
         return {
@@ -104,10 +103,10 @@ describe('LoginPage', () => {
 
 
             it('should display login form elements', () => {
-                expect(screen.getByText('Adm Grupo Paz')).toBeInTheDocument();
-                expect(screen.getByPlaceholderText('Login')).toBeInTheDocument();
-                expect(screen.getByPlaceholderText('Senha')).toBeInTheDocument();
+                expect(screen.getByRole('textbox', { name: /email/i })).toBeInTheDocument();
+                expect(screen.getByLabelText(/senha/i)).toBeInTheDocument();
                 expect(screen.getByRole('button', { name: /entrar/i })).toBeInTheDocument();
+                expect(screen.getByRole('button', { name: /esqueci minha senha/i })).toBeInTheDocument();
                 expect(screen.getByTestId('header')).toBeInTheDocument();
             });
 
@@ -148,6 +147,12 @@ describe('LoginPage', () => {
                 submitForm();
 
                 await expectLoginServiceCall('admin@test.com', 'password123');
+            });
+
+            it('should navigate to forgot password page when button is clicked', () => {
+                const forgotPasswordButton = screen.getByRole('button', { name: /esqueci minha senha/i });
+                fireEvent.click(forgotPasswordButton);
+                expect(mockNavigate).toHaveBeenCalledWith('/forgot-password');
             });
         });
 

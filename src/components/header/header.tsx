@@ -16,10 +16,6 @@ export function Header() {
     setIsMobileMenuOpen(false);
   };
 
-  const handlePasswordRecovery = () => {
-    console.log("Recuperar senha");
-  };
-
   const handleNavigation = (path: string) => {
     navigate(path);
     setIsMobileMenuOpen(false);
@@ -70,14 +66,6 @@ export function Header() {
                 Sair
               </button>
             </>
-          )}
-          {!isAuthenticated && location.pathname === "/login" && (
-            <button
-              className="header-btn"
-              onClick={handlePasswordRecovery}
-            >
-              Recuperar Senha
-            </button>
           )}
         </nav>
 

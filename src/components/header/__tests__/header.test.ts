@@ -57,15 +57,18 @@ describe('Header', () => {
                 expect(mockNavigate).toHaveBeenCalledWith('/login');
             });
         });
-        describe('and user is not authenticated and on /login', () => {
-            it('should show Recuperar Senha button', () => {
-                renderComponent(false, '/login');
-                expect(screen.getByText('Recuperar Senha')).toBeInTheDocument();
-            });
-        });
         describe('and user is authenticated and on non-admin route', () => {
             it('should NOT show admin navigation buttons', () => {
                 renderComponent(true, '/');
+                expect(screen.queryByText('Perfil')).not.toBeInTheDocument();
+                expect(screen.queryByText('Administradores')).not.toBeInTheDocument();
+                expect(screen.queryByText('Sair')).not.toBeInTheDocument();
+            });
+        });
+
+        describe('and user is not authenticated', () => {
+            it('should NOT show any navigation buttons', () => {
+                renderComponent(false, '/login');
                 expect(screen.queryByText('Perfil')).not.toBeInTheDocument();
                 expect(screen.queryByText('Administradores')).not.toBeInTheDocument();
                 expect(screen.queryByText('Sair')).not.toBeInTheDocument();

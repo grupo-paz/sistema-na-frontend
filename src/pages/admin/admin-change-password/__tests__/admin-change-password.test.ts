@@ -151,11 +151,9 @@ describe('AdminChangePassword', () => {
         
         fireEvent.click(screen.getByText('Salvar'));
         
-        // Verifica se o loading aparece
         expect(screen.getByTestId('loading')).toBeInTheDocument();
         expect(screen.getByText('Salvando...')).toBeInTheDocument();
         
-        // Aguarda finalizar
         await waitFor(() => {
             expect(mockShowConfirm).toHaveBeenCalled();
         });
@@ -178,7 +176,6 @@ describe('AdminChangePassword', () => {
             expect(mockShowConfirm).toHaveBeenCalled();
         });
         
-        // Verifica se os campos foram limpos
         expect(currentPasswordInput).toHaveValue('');
         expect(newPasswordInput).toHaveValue('');
         expect(confirmPasswordInput).toHaveValue('');

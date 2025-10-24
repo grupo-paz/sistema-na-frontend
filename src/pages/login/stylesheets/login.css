@@ -58,6 +58,24 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+.forgot-password-btn {
+    margin-top: 10px;
+    background: transparent;
+    border: none;
+    color: #ffffffc7;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.forgot-password-btn:hover {
+    color: #ffffff;
+    background-color: transparent !important;
+    width: fit-content;
+    border: none;
+    box-shadow: none !important;
+}
+
 .login-error {
     color: #ff6b6b;
     text-align: center;

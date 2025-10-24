@@ -57,6 +57,9 @@ export function LoginPage() {
                     <button type="submit" disabled={loading}>
                         {loading ? "Entrando..." : "Entrar"}
                     </button>
+                    <button type="button" disabled={loading} className="forgot-password-btn" onClick={() => navigate("/forgot-password")}>
+                        Esqueci minha senha
+                    </button>
                     {error && <p className="login-error">{error}</p>}
                 </form>
             </div>
