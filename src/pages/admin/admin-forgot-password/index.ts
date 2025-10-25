@@ -1,0 +1,1 @@
+export { default as AdminForgotPassword } from "./admin-forgot-password";

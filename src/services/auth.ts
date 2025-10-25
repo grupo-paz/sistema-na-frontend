@@ -43,13 +43,23 @@ export async function definePassword(token: string, password: string) {
  * @returns Mensagem de sucesso ou erro
  */
 export async function changeAdminPassword(adminId: string, currentPassword: string, newPassword: string) {
-  console.log("Changing password for admin:", adminId);
   return request<MessageResponse>(`/admins/change-password`, {
     method: "POST",
     headers: { "Content-Type": "application/json", "x-api-key": API_KEY },
     body: JSON.stringify({ adminId, currentPassword, newPassword }),
   });
 }
+/**
+ * Envia email para recuperar a senha de um administrador
+ * @param email Email do administrador
+ * @returns Mensagem de sucesso ou erro
+ */
+export async function forgotAdminPassword(email: string) {
+  return request<MessageResponse>(`/auth/forgot-password`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "x-api-key": API_KEY },
+    body: JSON.stringify({ email }),
+  });
+}
 
-// Re-exporta função de refresh e authStorage para uso externo
 export { refreshAccessToken, authStorage } from './base';

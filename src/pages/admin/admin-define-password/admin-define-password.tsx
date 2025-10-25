@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { definePassword, authStorage } from "../../../services";
+import { Header, Loading } from "../../../components";
 
 import "./stylesheets/admin-define-password.css";
 
@@ -12,63 +13,75 @@ export function AdminDefinePassword() {
 
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [message, setMessage] = useState({
+    text: '',
+    error: false,
+  });
 
-  async function onSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
     if (!token) {
-      setError("Token não encontrado na URL.");
+      setMessage({ text: "Token não encontrado na URL.", error: true });
       return;
     }
 
     setLoading(true);
-    setMessage(null);
-    setError(null);
+    setMessage({ text: '', error: false });
     try {
       const res = await definePassword(token, password);
-      setMessage(
-        res.message + " Redirecionando para a tela de login em 3 segundos..."
-      );
+      setMessage({
+        text: res.message + " Redirecionando para a tela de login em 3 segundos...",
+        error: false,
+      });
       authStorage.clear();
 
       setTimeout(() => {
         navigate("/login");
       }, 3000);
     } catch (e: any) {
-      setError(e.message || "Erro ao definir a senha.");
+      setMessage({ error: true, text: "Erro ao alterar senha. " + JSON.parse(e.message).issues[0]?.message });
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div className="define-password-wrapper">
-      <h2>Definir Nova Senha</h2>
-      <form onSubmit={onSubmit} className="define-password-form">
-        <label>
-          Nova Senha
-          <input
-            value={password}
-            type="password"
-            required
-            minLength={6}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <button type="submit" disabled={loading || !token}>
-          {loading ? "Salvando..." : "Definir Senha"}
-        </button>
-      </form>
-      {message && <p className="define-password-success">{message}</p>}
-      {error && <p className="define-password-error">{error}</p>}
-      {!token && (
-        <p className="define-password-error">
-          Token de ativação não encontrado. Por favor, use o link enviado para o
-          seu e-mail.
-        </p>
-      )}
-    </div>
+    <>
+      {loading && <Loading />}
+      <Header />
+      <div className="page-content">
+        <div className="admin-define-password">
+          <div className="admin-define-password-header">
+            <h1>Definir senha</h1>
+          </div>
+          <div className="admin-define-password-content">
+            <p className="admin-define-password-text">Insira sua nova senha</p>
+            <form onSubmit={handleSubmit} className="admin-form">
+              <div className="form-group">
+                <input
+                  id="new-password"
+                  type="password"
+                  placeholder="Nova Senha"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="buttons">
+                <button type="submit" disabled={loading} className="save-btn">
+                  {loading ? "Enviando..." : "Enviar"}
+                </button>
+                <button type="button" disabled={loading} className="cancel-btn" onClick={() => navigate("/admin/login")}>
+                  Cancelar
+                </button>
+              </div>
+              {message?.text && <p className={message.error ? "form-message-error" : "form-message-success"}>{message.text}</p>}
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

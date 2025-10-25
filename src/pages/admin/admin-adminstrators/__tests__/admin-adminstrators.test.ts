@@ -27,7 +27,6 @@ jest.mock('../../../../components/header', () => ({
 jest.mock('../../../../components', () => {
     const mockModule = {
         ...jest.requireActual('../../../../components'),
-        // Implementa o HOC withConfirmModal que simplesmente passa a prop showConfirm
         withConfirmModal: jest.fn().mockImplementation((Component) => {
             return function WithMockedConfirm(props: any) {
                 return {
@@ -44,13 +43,11 @@ jest.mock('../../../../components', () => {
 });
 
 const renderComponent = async () => {
-    // Importa o componente default que é o AdminAdministrators wrapped com withConfirmModal
     const AdminAdministratorsPage = require('../admin-adminstrators').default;
     let result;
     await act(async () => {
         result = render(React.createElement(AdminAdministratorsPage));
     });
-    // Esperar o carregamento inicial para evitar avisos de act()
     await waitFor(() => expect(mockGetAdmins).toHaveBeenCalled());
     return result;
 };

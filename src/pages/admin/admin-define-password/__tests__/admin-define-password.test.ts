@@ -1,8 +1,11 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { definePassword } from '../../../../services';
 
+const mockDefinePassword = jest.fn();
+const mockAuthStorage = {
+    clear: jest.fn()
+};
 const mockNavigate = jest.fn();
 const mockSearchParams = { get: jest.fn() };
 
@@ -13,10 +16,26 @@ jest.mock('react-router-dom', () => ({
 }));
 
 jest.mock('../../../../services', () => ({
-    definePassword: jest.fn(),
-    authStorage: {
-        clear: jest.fn(),
-    },
+    definePassword: jest.fn().mockImplementation((...args) => mockDefinePassword(...args)),
+    authStorage: mockAuthStorage,
+}));
+
+// Mock dos componentes
+jest.mock('../../../../components', () => ({
+    Header: () => ({
+        type: 'div',
+        props: { 'data-testid': 'header', children: 'Header' },
+        key: null,
+        ref: null,
+        $$typeof: Symbol.for('react.element')
+    }),
+    Loading: () => ({
+        type: 'div',
+        props: { 'data-testid': 'loading', children: 'Carregando...' },
+        key: null,
+        ref: null,
+        $$typeof: Symbol.for('react.element')
+    })
 }));
 
 describe('AdminDefinePassword', () => {
@@ -30,38 +49,108 @@ describe('AdminDefinePassword', () => {
         mockNavigate.mockReset();
         mockSearchParams.get.mockReset();
         mockSearchParams.get.mockReturnValue('token123');
+        mockDefinePassword.mockResolvedValue({ message: 'Senha definida!' });
     });
 
-    it('should render form and handle input', () => {
+    it('should render header and define password form', () => {
         renderComponent();
-        expect(screen.getByText('Definir Nova Senha')).toBeInTheDocument();
-        expect(screen.getByLabelText('Nova Senha')).toBeInTheDocument();
+        expect(screen.getByTestId('header')).toBeInTheDocument();
+        expect(screen.getByText('Definir senha')).toBeInTheDocument();
+        expect(screen.getByText('Insira sua nova senha')).toBeInTheDocument();
+        expect(screen.getByPlaceholderText('Nova Senha')).toBeInTheDocument();
+        expect(screen.getByText('Enviar')).toBeInTheDocument();
+        expect(screen.getByText('Cancelar')).toBeInTheDocument();
     });
 
-    it('should show error if token is missing', () => {
-        mockSearchParams.get.mockReturnValueOnce(null);
+    it('should show error if token is missing', async () => {
+        // Configura mock para retornar string vazia (sem token)
+        mockSearchParams.get.mockReturnValue('');
+        
         renderComponent();
-        expect(screen.getByText('Token de ativação não encontrado. Por favor, use o link enviado para o seu e-mail.')).toBeInTheDocument();
+        
+        const passwordInput = screen.getByPlaceholderText('Nova Senha');
+        passwordInput.removeAttribute('required');
+        
+        fireEvent.change(passwordInput, { target: { value: '123456' } });
+        fireEvent.click(screen.getByText('Enviar'));
+        
+        await waitFor(() => {
+            expect(screen.getByText('Token não encontrado na URL.')).toBeInTheDocument();
+        });
+        
+        expect(mockDefinePassword).not.toHaveBeenCalled();
     });
 
     it('should call definePassword and show message on success', async () => {
-        (definePassword as jest.Mock).mockResolvedValue({ message: 'Senha definida!' });
         renderComponent();
-        fireEvent.change(screen.getByLabelText('Nova Senha'), { target: { value: '123456' } });
-        fireEvent.click(screen.getByRole('button'));
+        fireEvent.change(screen.getByPlaceholderText('Nova Senha'), { target: { value: '123456' } });
+        fireEvent.click(screen.getByText('Enviar'));
         await waitFor(() => {
-            expect(definePassword).toHaveBeenCalledWith('token123', '123456');
+            expect(mockDefinePassword).toHaveBeenCalledWith('token123', '123456');
             expect(screen.getByText(/Senha definida!/)).toBeInTheDocument();
         });
     });
 
     it('should show error on API failure', async () => {
-        (definePassword as jest.Mock).mockRejectedValue(new Error('Erro ao definir a senha.'));
-        renderComponent();
-        fireEvent.change(screen.getByLabelText('Nova Senha'), { target: { value: '123456' } });
-        fireEvent.click(screen.getByRole('button'));
-        await waitFor(() => {
-            expect(screen.getByText('Erro ao definir a senha.')).toBeInTheDocument();
+        const errorMessage = JSON.stringify({
+            issues: [{ message: 'Token inválido ou expirado' }]
         });
+        mockDefinePassword.mockRejectedValue(new Error(errorMessage));
+        
+        renderComponent();
+        fireEvent.change(screen.getByPlaceholderText('Nova Senha'), { target: { value: '123456' } });
+        fireEvent.click(screen.getByText('Enviar'));
+        await waitFor(() => {
+            expect(screen.getByText('Erro ao alterar senha. Token inválido ou expirado')).toBeInTheDocument();
+        });
+    });
+
+    it('should navigate back when cancel button is clicked', () => {
+        renderComponent();
+        
+        fireEvent.click(screen.getByText('Cancelar'));
+        
+        expect(mockNavigate).toHaveBeenCalledWith('/admin/login');
+    });
+
+    it('should show loading component when submitting', async () => {
+        mockDefinePassword.mockImplementation(() => new Promise(resolve => {
+            setTimeout(() => resolve({ message: 'Sucesso' }), 100);
+        }));
+        
+        renderComponent();
+        
+        fireEvent.change(screen.getByPlaceholderText('Nova Senha'), { target: { value: '123456' } });
+        fireEvent.click(screen.getByText('Enviar'));
+        
+        expect(screen.getByTestId('loading')).toBeInTheDocument();
+        expect(screen.getByText('Enviando...')).toBeInTheDocument();
+        
+        await waitFor(() => {
+            expect(screen.getByText(/Sucesso/)).toBeInTheDocument();
+        });
+    });
+
+    it('should clear auth storage and redirect after success', async () => {
+        jest.useFakeTimers();
+        
+        renderComponent();
+        
+        fireEvent.change(screen.getByPlaceholderText('Nova Senha'), { target: { value: '123456' } });
+        fireEvent.click(screen.getByText('Enviar'));
+        
+        await waitFor(() => {
+            expect(mockAuthStorage.clear).toHaveBeenCalled();
+            expect(screen.getByText(/Senha definida!/)).toBeInTheDocument();
+        });
+        
+        // Avança 3 segundos
+        jest.advanceTimersByTime(3000);
+        
+        await waitFor(() => {
+            expect(mockNavigate).toHaveBeenCalledWith('/login');
+        });
+        
+        jest.useRealTimers();
     });
 });

@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
-// Mock dos serviços
 const mockUpdateAdmin = jest.fn();
 const mockGetAdminById = jest.fn();
 const mockAuthStorage = {
@@ -18,7 +17,6 @@ jest.mock('../../../../services', () => ({
     authStorage: mockAuthStorage
 }));
 
-// Mock dos componentes
 jest.mock('../../../../components', () => ({
     Header: () => ({
         type: 'div',
@@ -36,7 +34,6 @@ jest.mock('../../../../components', () => ({
     })
 }));
 
-// Mock do useNavigate
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
@@ -63,7 +60,6 @@ describe('AdminProfile', () => {
         renderComponent();
         expect(screen.getByTestId('header')).toBeInTheDocument();
         
-        // Espera os dados serem carregados
         await waitFor(() => {
             expect(screen.getByText('Perfil')).toBeInTheDocument();
             expect(screen.getByDisplayValue('Admin Teste')).toBeInTheDocument();
@@ -82,44 +78,34 @@ describe('AdminProfile', () => {
     it('should toggle edit mode when Edit button is clicked', async () => {
         renderComponent();
         
-        // Espera os dados serem carregados
         await waitFor(() => {
             expect(screen.getByDisplayValue('Admin Teste')).toBeInTheDocument();
         });
 
-        // Verificando que os campos são readOnly inicialmente
         const nameInput = screen.getByLabelText('Nome');
         expect(nameInput).toHaveAttribute('readOnly');
 
-        // Clica no botão de editar
         fireEvent.click(screen.getByText('Editar Informações'));
 
-        // Verifica que os campos não são mais readOnly
         expect(nameInput).not.toHaveAttribute('readOnly');
 
-        // Verifica que o botão de salvar apareceu
         expect(screen.getByText('Salvar')).toBeInTheDocument();
     });
 
     it('should update admin data when form is submitted', async () => {
         renderComponent();
         
-        // Espera os dados serem carregados
         await waitFor(() => {
             expect(screen.getByDisplayValue('Admin Teste')).toBeInTheDocument();
         });
 
-        // Entra no modo de edição
         fireEvent.click(screen.getByText('Editar Informações'));
 
-        // Altera o nome
         const nameInput = screen.getByLabelText('Nome');
         fireEvent.change(nameInput, { target: { value: 'Novo Nome' } });
 
-        // Submete o formulário
         fireEvent.click(screen.getByText('Salvar'));
 
-        // Verifica que updateAdmin foi chamado com os dados corretos
         await waitFor(() => {
             expect(mockUpdateAdmin).toHaveBeenCalledWith('123', {
                 name: 'Novo Nome',
@@ -147,18 +133,14 @@ describe('AdminProfile', () => {
             expect(screen.getByDisplayValue('Admin Teste')).toBeInTheDocument();
         });
 
-        // Entra no modo de edição
         fireEvent.click(screen.getByText('Editar Informações'));
 
-        // Altera o nome
         const nameInput = screen.getByLabelText('Nome');
         fireEvent.change(nameInput, { target: { value: 'Novo Nome' } });
         expect(nameInput).toHaveValue('Novo Nome');
 
-        // Clica em cancelar
         fireEvent.click(screen.getByText('Cancelar'));
 
-        // Verifica que o nome voltou ao original
         await waitFor(() => {
             expect(screen.getByLabelText('Nome')).toHaveValue('Admin Teste');
             expect(nameInput).toHaveAttribute('readOnly');
