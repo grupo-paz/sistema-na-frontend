@@ -161,17 +161,6 @@
     cursor: not-allowed;
 }
 
-.form-message {
-    color: #90EE90;
-    text-align: center;
-    margin-top: 25px;
-    margin-bottom: 0;
-    padding: 10px;
-    background: rgba(144, 238, 144, 0.1);
-    border-radius: 4px;
-    border: 1px solid rgba(144, 238, 144, 0.3);
-}
-
 .loading-overlay {
     position: fixed;
     top: 0;
