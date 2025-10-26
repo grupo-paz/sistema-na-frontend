@@ -19,3 +19,15 @@ export interface Admin {
 export interface MessageResponse {
   message: string;
 }
+
+export interface Secretary {
+  cashValue: number;
+  pixValue: number;
+  createdAt: string;
+  author: Admin;
+}
+
+export interface UpdateSecretaryBody {
+  cashValue: number;
+  pixValue: number;
+}

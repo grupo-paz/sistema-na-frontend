@@ -1,0 +1,1 @@
+export { default as AdminSecretary } from "./admin-secretary";

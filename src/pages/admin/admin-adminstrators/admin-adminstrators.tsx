@@ -1,7 +1,6 @@
 
 import React, { FormEvent, useEffect, useState } from "react";
-import { getAdmins, registerAdmin, removeAdmin } from "../../../services";
-import { Admin } from "../../../models";
+import { Admin, getAdmins, registerAdmin, removeAdmin } from "../../../services";
 import { Loading, withConfirmModal, ConfirmModalOptions, Header } from "../../../components";
 
 import "./stylesheets/admin-adminstrators.css";

@@ -60,6 +60,12 @@ export function Header() {
                 Administradores
               </button>
               <button
+                className={`header-btn header-btn-secondary ${location.pathname === "/admin/secretaria" ? "active" : ""}`}
+                onClick={() => handleNavigation("/admin/secretaria")}
+              >
+                Secretaria
+              </button>
+              <button
                 className="header-btn header-btn-secondary"
                 onClick={handleLogout}
               >
