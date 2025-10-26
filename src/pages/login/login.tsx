@@ -43,7 +43,7 @@ export function LoginPage() {
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                         type="email"
-                        placeholder="Login"
+                        placeholder="Email"
                         aria-label="Email"
                         required />
                     <input

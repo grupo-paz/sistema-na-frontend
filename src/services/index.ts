@@ -10,3 +10,12 @@ export type {
   Admin, 
   MessageResponse 
 } from "./types";
+
+export { getSecretary, updateSecretary } from "./secretary";
+
+export type { 
+  Secretary, 
+  UpdateSecretaryBody 
+} from "./types";
+
+export * from "./utils";

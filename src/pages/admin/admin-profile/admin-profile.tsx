@@ -2,9 +2,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Header, Loading } from "../../../components";
-import { authStorage } from "../../../services";
+import { Admin, authStorage } from "../../../services";
 import { getAdminById, updateAdmin } from "../../../services/admin";
-import { Admin } from "../../../models";
 import "./stylesheets/admin-profile.css";
 
 export function AdminProfile() {
