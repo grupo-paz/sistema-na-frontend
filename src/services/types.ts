@@ -31,3 +31,37 @@ export interface UpdateSecretaryBody {
   cashValue: number;
   pixValue: number;
 }
+
+export interface Event {
+  id: string;
+  title: string;
+  description: string;
+  dateTime: string;
+  location: string;
+  type: string;
+  category: string;
+  createdAt: string;
+  updatedAt: string;
+  authorId: string;
+  author: {
+    name: string;
+  };
+}
+
+export interface CreateEventBody {
+  title: string;
+  description: string;
+  dateTime: string;
+  location: string;
+  type: string;
+  category: string;
+}
+
+export interface UpdateEventBody {
+  title?: string;
+  description?: string;
+  dateTime?: string;
+  location?: string;
+  type?: string;
+  category?: string;
+}
