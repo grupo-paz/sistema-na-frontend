@@ -13,9 +13,14 @@ export type {
 
 export { getSecretary, updateSecretary } from "./secretary";
 
+export { getEvents, getEvent, createEvent, updateEvent, removeEvent } from "./events";
+
 export type { 
   Secretary, 
-  UpdateSecretaryBody 
+  UpdateSecretaryBody,
+  Event,
+  CreateEventBody,
+  UpdateEventBody
 } from "./types";
 
 export * from "./utils";

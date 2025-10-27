@@ -40,7 +40,7 @@ const renderLoginPage = () => {
 };
 
 const fillLoginForm = (email: string, password: string) => {
-    const emailInput = screen.getByPlaceholderText('Login');
+    const emailInput = screen.getByPlaceholderText('Email');
     const passwordInput = screen.getByPlaceholderText('Senha');
 
     fireEvent.change(emailInput, { target: { value: email } });
@@ -111,7 +111,7 @@ describe('LoginPage', () => {
             });
 
             it('should have proper input attributes', () => {
-                const emailInput = screen.getByPlaceholderText('Login');
+                const emailInput = screen.getByPlaceholderText('Email');
                 const passwordInput = screen.getByPlaceholderText('Senha');
 
                 expect(emailInput).toHaveAttribute('type', 'email');
@@ -130,7 +130,7 @@ describe('LoginPage', () => {
             });
 
             it('should update email input value when typed', () => {
-                const emailInput = screen.getByPlaceholderText('Login');
+                const emailInput = screen.getByPlaceholderText('Email');
                 fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
                 expect((emailInput as HTMLInputElement).value).toBe('test@example.com');
             });
