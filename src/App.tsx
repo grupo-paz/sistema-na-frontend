@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ProtectedRoute, RootRedirect } from "./routes";
-import { AdminAdministrators, Admin, AdminProfile, AdminDefinePassword, LoginPage, AdminChangePassword, AdminSecretary, AdminForgotPassword, AdminEvents } from "./pages";
+import { AdminAdministrators, Admin, AdminProfile, AdminMeetings, AdminDefinePassword, LoginPage, AdminChangePassword, AdminSecretary, AdminForgotPassword, AdminEvents } from "./pages";
 
 export default function App() {
   return (
@@ -17,6 +17,7 @@ export default function App() {
           <Route path="/admin/administradores" element={<AdminAdministrators />} />
           <Route path="/admin/secretaria" element={<AdminSecretary />} />
           <Route path="/admin/eventos" element={<AdminEvents />} />
+          <Route path="/admin/reunioes" element={<AdminMeetings />} />
         </Route>
         <Route path="*" element={<RootRedirect />} />
       </Routes>

@@ -72,6 +72,12 @@ export function Header() {
                 Eventos
               </button>
               <button
+                className={`header-btn header-btn-secondary ${location.pathname === "/admin/reunioes" ? "active" : ""}`}
+                onClick={() => handleNavigation("/admin/reunioes")}
+              >
+                Reuniões
+              </button>
+              <button
                 className="header-btn header-btn-secondary"
                 onClick={handleLogout}
               >

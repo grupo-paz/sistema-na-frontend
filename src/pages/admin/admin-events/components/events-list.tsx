@@ -334,8 +334,8 @@ const EventsList: React.FC<EventsListProps> = ({ events, setEvents, filterFuture
                                                     onClick={() => onConfirmDelete(event.id)}
                                                 >
                                                     <svg viewBox="0 0 24 24">
-                                                        <path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6zm3.46-8.12a1 1 0 0 1 1.41 0L12 11.59l1.12-1.12a1 1 0 1 1 1.41 1.41L13.41 13l1.12 1.12a1 1 0 0 1-1.41 1.41L12 14.41l-1.12 1.12a1 1 0 0 1-1.41-1.41L10.59 13l-1.12-1.12a1 1 0 0 1 0-1.41z" />
-                                                    </svg>
+                                                        <rect x="4" y="4" width="16" height="2" rx="1" fill="white"></rect>
+                                                <path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6zm3.46-8.12a1 1 0 0 1 1.41 0L12 11.59l1.12-1.12a1 1 0 1 1 1.41 1.41L13.41 13l1.12 1.12a1 1 0 0 1-1.41 1.41L12 14.41l-1.12 1.12a1 1 0 0 1-1.41-1.41L10.59 13l-1.12-1.12a1 1 0 0 1 0-1.41z" />                                                    </svg>
                                                 </button>
                                             </div>
                                         </>
