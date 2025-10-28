@@ -1,15 +1,15 @@
-.events-page-header {
+.meetings-page-header {
     text-align: center;
     margin-bottom: 30px;
 }
 
-.events-page-header h1 {
+.meetings-page-header h1 {
     font-size: 34px;
     margin: 0;
     color: white;
 }
 
-.events-list {
+.meetings-list {
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -19,7 +19,7 @@
     list-style: none;
 }
 
-.event-card {
+.meeting-card {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     border: 1px solid rgb(255, 255, 255);
@@ -33,7 +33,7 @@
     gap: 16px;
 }
 
-.event-info {
+.meeting-info {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -43,7 +43,7 @@
     position: relative;
 }
 
-.event-header {
+.meeting-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -51,7 +51,11 @@
     flex-wrap: wrap;
 }
 
-.event-title {
+.meeting-header h3 {
+    margin: 0;
+}
+
+.meeting-title {
     font-size: 20px;
     font-weight: 600;
     color: white;
@@ -62,7 +66,7 @@
     white-space: nowrap;
 }
 
-.event-category {
+.meeting-category {
     background: rgba(255, 255, 255, 0.2);
     color: white;
     padding: 4px 12px;
@@ -73,7 +77,7 @@
     flex-shrink: 0;
 }
 
-.event-description {
+.meeting-description {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.9);
     line-height: 1.4;
@@ -84,7 +88,7 @@
     overflow: hidden;
 }
 
-.event-details {
+.meeting-details {
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -92,30 +96,30 @@
     color: rgba(255, 255, 255, 0.7);
 }
 
-.event-datetime {
+.meeting-datetime {
     font-weight: 500;
     color: rgba(255, 255, 255, 0.9);
 }
 
-.event-location,
-.event-type {
+.meeting-location,
+.meeting-type {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.event-author {
+.meeting-author {
     font-size: 12px;
     color: rgba(255, 255, 255, 0.6);
     font-style: italic;
 }
 
-.event-actions {
+.meeting-actions {
     flex-shrink: 0;
     display: flex;
     gap: 8px;
     align-items: flex-start;
 }
 
-.event-action-btn {
+.meeting-action-btn {
     background: #0000004f;
     border: none;
     border-radius: 12px;
@@ -127,25 +131,25 @@
     transition: background 0.2s;
 }
 
-.event-action-btn:hover {
+.meeting-action-btn:hover {
     background: #0000009b;
 }
 
-.event-action-btn.edit-btn:hover {
+.meeting-action-btn.edit-btn:hover {
     background: rgba(34, 197, 94, 0.3);
 }
 
-.event-action-btn.delete-btn:hover {
+.meeting-action-btn.delete-btn:hover {
     background: rgba(239, 68, 68, 0.3);
 }
 
-.event-action-btn svg {
+.meeting-action-btn svg {
     width: 20px;
     height: 20px;
     fill: #fff;
 }
 
-.events-form-section {
+.meetings-form-section {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     margin-bottom: 40px;
@@ -153,14 +157,14 @@
     border: 1px solid rgb(255, 255, 255);
 }
 
-.events-form-section h3 {
+.meetings-form-section h3 {
     color: white;
     font-size: 22px;
     margin: 0 0 20px 0;
     font-weight: 600;
 }
 
-.events-form {
+.meetings-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -264,7 +268,7 @@
     transform: rotate(180deg);
 }
 
-.events-form.expandable {
+.meetings-form.expandable {
     animation: slideDown 0.3s ease-out;
     padding: 30px;
     padding-top: 0;
@@ -301,7 +305,7 @@
 
 }
 
-.no-events {
+.no-meetings {
     color: rgba(255, 255, 255, 0.7);
     text-align: center;
     font-size: 16px;
@@ -323,16 +327,16 @@
         gap: 16px;
     }
 
-    .event-card {
+    .meeting-card {
         flex-direction: column;
         gap: 16px;
     }
 
-    .events-form.expandable {
+    .meetings-form.expandable {
         padding: 0px;
     }
 
-    .events-form.expandable.create-form {
+    .meetings-form.expandable.create-form {
         padding: 20px;
     }
 }

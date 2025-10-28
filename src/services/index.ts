@@ -15,12 +15,17 @@ export { getSecretary, updateSecretary } from "./secretary";
 
 export { getEvents, getEvent, createEvent, updateEvent, removeEvent } from "./events";
 
+export { createMeeting, getMeetings, getMeetingById, updateMeeting, removeMeeting } from "./meetings";
+
 export type { 
   Secretary, 
   UpdateSecretaryBody,
   Event,
   CreateEventBody,
-  UpdateEventBody
+  UpdateEventBody,
+  Meeting,
+  CreateMeetingBody,
+  UpdateMeetingBody
 } from "./types";
 
 export * from "./utils";

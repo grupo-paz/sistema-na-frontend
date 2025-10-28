@@ -65,3 +65,35 @@ export interface UpdateEventBody {
   type?: string;
   category?: string;
 }
+
+export interface Meeting {
+  id: string;
+  dayOfWeek: string;
+  time: string;
+  type: string;
+  category: string;
+  roomOpener: string;
+  createdAt: string;
+  updatedAt: string;
+  authorId: string;
+  author?: {
+    name: string;
+  };
+}
+
+export interface CreateMeetingBody {
+  dayOfWeek: string;
+  time: string;
+  type: string;
+  category: string;
+  roomOpener: string;
+}
+
+export interface UpdateMeetingBody {
+  dayOfWeek?: string;
+  time?: string;
+  type?: string;
+  category?: string;
+  roomOpener?: string;
+}
+
