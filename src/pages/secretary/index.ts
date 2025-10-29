@@ -1,0 +1,1 @@
+export { SecretaryPage } from "./secretary";

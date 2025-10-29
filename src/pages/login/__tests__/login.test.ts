@@ -16,14 +16,14 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockNavigate,
 }));
 
-jest.mock('../../../components/header/header', () => ({
-    Header: function MockHeader() {
+jest.mock('../../../components/admin-header', () => ({
+    AdminHeader: function MockHeader() {
         return {
             $$typeof: Symbol.for('react.element'),
             type: 'div',
             key: null,
             ref: null,
-            props: { 'data-testid': 'header', children: 'Mock Header' }
+            props: { 'data-testid': 'admin-header', children: 'Mock Admin Header' }
         };
     }
 }));
@@ -107,7 +107,7 @@ describe('LoginPage', () => {
                 expect(screen.getByLabelText(/senha/i)).toBeInTheDocument();
                 expect(screen.getByRole('button', { name: /entrar/i })).toBeInTheDocument();
                 expect(screen.getByRole('button', { name: /esqueci minha senha/i })).toBeInTheDocument();
-                expect(screen.getByTestId('header')).toBeInTheDocument();
+                expect(screen.getByTestId('admin-header')).toBeInTheDocument();
             });
 
             it('should have proper input attributes', () => {
