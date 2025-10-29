@@ -1,12 +1,12 @@
-.header {
+.admin-header {
   position: relative;
-  background: rgba(3, 20, 77, 0.95);
+  background: rgba(255, 255, 255, 0.1);
   z-index: 2;
   padding: 0;
   width: 100%;
 }
 
-.header-content {
+.admin-header-content {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -15,7 +15,7 @@
   padding: 15px 30px;
 }
 
-.header-logo h1 {
+.admin-header-logo h1 {
   color: white;
   font-size: 24px;
   font-weight: 600;
@@ -23,13 +23,13 @@
   letter-spacing: 0.5px;
 }
 
-.header-actions {
+.admin-header-actions {
   display: flex;
   gap: 15px;
   align-items: center;
 }
 
-.header-btn {
+.admin-header-btn {
   padding: 8px 20px;
   border-radius: 20px;
   font-size: 14px;
@@ -41,7 +41,7 @@
   color: white;
 }
 
-.header-btn:hover {
+.admin-header-btn:hover {
   border: 1px solid rgba(255, 255, 255, 0.3);
 
 }
@@ -107,17 +107,17 @@
 
 /* Responsivo */
 @media (max-width: 768px) {
-  .header-content {
+  .admin-header-content {
     padding: 20px;
     position: relative;
     justify-content: flex-end; /* Logo à direita */
   }
   
-  .header-logo {
+  .admin-header-logo {
     order: 2; /* Logo vai para a direita */
   }
   
-  .header-logo h1 {
+  .admin-header-logo h1 {
     font-size: 20px;
   }
   
@@ -130,13 +130,13 @@
   }
   
   /* Menu mobile - escondido por padrão */
-  .header-actions {
+  .admin-header-actions {
     position: fixed;
     top: 0;
     left: -100%;
     width: 280px;
     height: 100vh;
-    background: rgba(3, 20, 77, 0.98);
+    background: #34446c;
     backdrop-filter: blur(10px);
     flex-direction: column;
     justify-content: flex-start;
@@ -149,7 +149,7 @@
   }
   
   /* Menu mobile aberto */
-  .header-actions.mobile-open {
+  .admin-header-actions.mobile-open {
     left: 0;
   }
   
@@ -159,7 +159,7 @@
   }
   
   /* Botões do menu mobile */
-  .header-actions .header-btn {
+  .admin-header-actions .admin-header-btn {
     width: 100%;
     padding: 15px 20px;
     margin-bottom: 10px;
@@ -170,24 +170,24 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
   
-  .header-actions .header-btn:hover {
+  .admin-header-actions .admin-header-btn:hover {
     background: rgba(255, 255, 255, 0.1);
     transform: none;
   }
   
-  .header-actions .header-btn.active {
+  .admin-header-actions .admin-header-btn.active {
     background: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.4);
   }
   
   /* Estilo especial para o botão Sair */
-  .header-actions .header-btn:last-child {
+  .admin-header-actions .admin-header-btn:last-child {
     margin-top: 20px;
-    background: rgba(220, 53, 69, 0.8);
-    border-color: rgba(220, 53, 69, 0.8);
+    background: rgba(220, 53, 70, 0.561);
+    border-color: rgba(220, 53, 70, 0.34);
   }
   
-  .header-actions .header-btn:last-child:hover {
+  .admin-header-actions .admin-header-btn:last-child:hover {
     background: rgba(220, 53, 69, 1);
   }
 }

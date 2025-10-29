@@ -1,7 +1,7 @@
 import { FormEvent, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { login, authStorage } from "../../services"
-import { Header } from "../../components/header/header"
+import { AdminHeader } from "../../components"
 
 import "./stylesheets/login.css"
 
@@ -34,9 +34,10 @@ export function LoginPage() {
 
     return (
         <>
-            <Header />
+            <AdminHeader />
             <div className="page-content login-container">
-                <h2>Adm Grupo Paz</h2>
+                <h2>Administração</h2>
+                <span>Grupo<b>Paz</b></span>
                 <form onSubmit={onSubmit} className="login-form">
                     <input
                         id="email"

@@ -26,8 +26,8 @@ export function AdminHeader() {
   };
 
   return (
-    <header className="header">
-      <div className="header-content">
+    <header className="admin-header">
+      <div className="admin-header-content">
         {isAuthenticated && location.pathname.includes("/admin") && (
           <button
             className="mobile-menu-toggle"
@@ -40,45 +40,45 @@ export function AdminHeader() {
           </button>
         )}
 
-        <div className="header-logo">
+        <div className="admin-header-logo">
           <h1>Grupo<b>Paz</b></h1>
         </div>
 
-        <nav className={`header-actions ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+        <nav className={`admin-header-actions ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
           {isAuthenticated && location.pathname.includes("/admin") && (
             <>
               <button
-                className={`header-btn header-btn-secondary ${location.pathname === "/admin/perfil" || location.pathname === "/admin" ? "active" : ""}`}
+                className={`admin-header-btn admin-header-btn-secondary ${location.pathname === "/admin/perfil" || location.pathname === "/admin" ? "active" : ""}`}
                 onClick={() => handleNavigation("/admin/perfil")}
               >
                 Perfil
               </button>
               <button
-                className={`header-btn header-btn-secondary ${location.pathname === "/admin/administradores" ? "active" : ""}`}
+                className={`admin-header-btn admin-header-btn-secondary ${location.pathname === "/admin/administradores" ? "active" : ""}`}
                 onClick={() => handleNavigation("/admin/administradores")}
               >
                 Administradores
               </button>
               <button
-                className={`header-btn header-btn-secondary ${location.pathname === "/admin/secretaria" ? "active" : ""}`}
+                className={`admin-header-btn admin-header-btn-secondary ${location.pathname === "/admin/secretaria" ? "active" : ""}`}
                 onClick={() => handleNavigation("/admin/secretaria")}
               >
                 Secretaria
               </button>
               <button
-                className={`header-btn header-btn-secondary ${location.pathname === "/admin/eventos" ? "active" : ""}`}
+                className={`admin-header-btn admin-header-btn-secondary ${location.pathname === "/admin/eventos" ? "active" : ""}`}
                 onClick={() => handleNavigation("/admin/eventos")}
               >
                 Eventos
               </button>
               <button
-                className={`header-btn header-btn-secondary ${location.pathname === "/admin/reunioes" ? "active" : ""}`}
+                className={`admin-header-btn admin-header-btn-secondary ${location.pathname === "/admin/reunioes" ? "active" : ""}`}
                 onClick={() => handleNavigation("/admin/reunioes")}
               >
                 Reuniões
               </button>
               <button
-                className="header-btn header-btn-secondary"
+                className="admin-header-btn admin-header-btn-secondary"
                 onClick={handleLogout}
               >
                 Sair
