@@ -1,11 +1,11 @@
 import { FormEvent, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
-import { definePassword, authStorage } from "../../../services";
-import { Header, Loading } from "../../../components";
+import { definePassword, authStorage } from "../../services";
+import { Header, Loading } from "../../components";
 
-import "./stylesheets/admin-define-password.css";
+import "./stylesheets/define-password.css";
 
-export function AdminDefinePassword() {
+export function DefinePassword() {
   const [search] = useSearchParams();
   const navigate = useNavigate();
 
@@ -51,12 +51,12 @@ export function AdminDefinePassword() {
       {loading && <Loading />}
       <Header />
       <div className="page-content">
-        <div className="admin-define-password">
-          <div className="admin-define-password-header">
+        <div className="define-password">
+          <div className="define-password-header">
             <h1>Definir senha</h1>
           </div>
-          <div className="admin-define-password-content">
-            <p className="admin-define-password-text">Insira sua nova senha</p>
+          <div className="define-password-content">
+            <p className="define-password-text">Insira sua nova senha</p>
             <form onSubmit={handleSubmit} className="admin-form">
               <div className="form-group">
                 <input

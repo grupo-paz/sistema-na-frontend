@@ -6,7 +6,7 @@ const mockForgotAdminPassword = jest.fn();
 const mockShowConfirm = jest.fn();
 const mockNavigate = jest.fn();
 
-jest.mock('../../../../services/auth', () => ({
+jest.mock('../../../services/auth', () => ({
     forgotAdminPassword: jest.fn().mockImplementation((...args) => mockForgotAdminPassword(...args))
 }));
 
@@ -15,7 +15,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 // Mock do componente Header e withConfirmModal
-jest.mock('../../../../components', () => {
+jest.mock('../../../components', () => {
     const mockWithConfirmModal = jest.fn().mockImplementation((Component) => {
         const WrappedComponent = (props: any) => {
             const ComponentWithConfirm = require('react').createElement(Component, {
@@ -50,10 +50,10 @@ jest.mock('../../../../components', () => {
     };
 });
 
-describe('AdminForgotPassword', () => {
+describe('ForgotPassword', () => {
     const renderComponent = () => {
-        const AdminForgotPasswordPage = require('../admin-forgot-password').default;
-        return render(React.createElement(AdminForgotPasswordPage));
+        const ForgotPasswordPage = require('../forgot-password').default;
+        return render(React.createElement(ForgotPasswordPage));
     };
 
     beforeEach(() => {

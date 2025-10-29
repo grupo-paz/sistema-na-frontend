@@ -15,13 +15,13 @@ jest.mock('react-router-dom', () => ({
     useSearchParams: () => [mockSearchParams],
 }));
 
-jest.mock('../../../../services', () => ({
+jest.mock('../../../services', () => ({
     definePassword: jest.fn().mockImplementation((...args) => mockDefinePassword(...args)),
     authStorage: mockAuthStorage,
 }));
 
 // Mock dos componentes
-jest.mock('../../../../components', () => ({
+jest.mock('../../../components', () => ({
     Header: () => ({
         type: 'div',
         props: { 'data-testid': 'header', children: 'Header' },
@@ -38,10 +38,10 @@ jest.mock('../../../../components', () => ({
     })
 }));
 
-describe('AdminDefinePassword', () => {
+describe('DefinePassword', () => {
     const renderComponent = () => {
-        const { AdminDefinePassword } = require('../admin-define-password');
-        return render(React.createElement(AdminDefinePassword));
+        const { DefinePassword } = require('../define-password');
+        return render(React.createElement(DefinePassword));
     };
 
     beforeEach(() => {
