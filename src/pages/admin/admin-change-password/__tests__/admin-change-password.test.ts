@@ -37,9 +37,9 @@ jest.mock('../../../../components', () => {
     });
 
     return {
-        Header: () => ({
+        AdminHeader: () => ({
             type: 'div',
-            props: { 'data-testid': 'header', children: 'Header' },
+            props: { 'data-testid': 'admin-header', children: 'AdminHeader' },
             key: null,
             ref: null,
             $$typeof: Symbol.for('react.element')
@@ -68,9 +68,9 @@ describe('AdminChangePassword', () => {
         mockChangeAdminPassword.mockResolvedValue({ message: 'Senha alterada com sucesso!' });
     });
 
-    it('should render header and password form', () => {
+    it('should render admin header and password form', () => {
         renderComponent();
-        expect(screen.getByTestId('header')).toBeInTheDocument();
+        expect(screen.getByTestId('admin-header')).toBeInTheDocument();
         expect(screen.getByText('Alterar Senha')).toBeInTheDocument();
         expect(screen.getByLabelText('Senha Atual')).toBeInTheDocument();
         expect(screen.getByLabelText('Nova Senha')).toBeInTheDocument();

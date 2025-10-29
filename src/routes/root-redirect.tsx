@@ -8,5 +8,5 @@ export function RootRedirect() {
     return <Navigate to="/admin" replace />;
   }
 
-  return <Navigate to="/home" replace />;
+  return <Navigate to="/" replace />;
 }

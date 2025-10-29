@@ -21,13 +21,13 @@ jest.mock('../../../services', () => ({
     },
 }));
 
-describe('Header', () => {
+describe('AdminHeader', () => {
     const renderComponent = (isAuthenticated = true, pathname = '/admin/perfil') => {
         mockAuthStorage.getAccessToken.mockReturnValue(isAuthenticated ? 'token' : undefined);
         mockLocation.pathname = pathname;
         jest.requireMock('../../../services').authStorage.getAccessToken.mockReturnValue(isAuthenticated ? 'token' : undefined);
-        const { Header } = require('../header');
-        return render(React.createElement(Header));
+        const { AdminHeader } = require('../admin-header');
+        return render(React.createElement(AdminHeader));
     };
 
     beforeEach(() => {

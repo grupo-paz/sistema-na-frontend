@@ -1,7 +1,7 @@
 
 import React, { FormEvent, useEffect, useState } from "react";
 import { Admin, getAdmins, registerAdmin, removeAdmin } from "../../../services";
-import { Loading, withConfirmModal, ConfirmModalOptions, Header } from "../../../components";
+import { Loading, withConfirmModal, ConfirmModalOptions, AdminHeader } from "../../../components";
 
 import "./stylesheets/admin-adminstrators.css";
 
@@ -77,7 +77,7 @@ const AdminAdministrators: React.FC<{ showConfirm: (options: ConfirmModalOptions
     return (
         <>
             {loading && <Loading />}
-            <Header />
+            <AdminHeader />
             <div className="page-content">
                 <div className="admin-page-header">
                     <h1>Administradores</h1>

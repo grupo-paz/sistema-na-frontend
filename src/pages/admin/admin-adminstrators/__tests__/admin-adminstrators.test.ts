@@ -14,8 +14,8 @@ const mockGetAdmins = jest.fn().mockResolvedValue([]);
 jest.mocked(require('../../../../services').getAdmins).mockImplementation(mockGetAdmins);
 const registerAdmin = registerAdminOriginal as jest.Mock;
 
-jest.mock('../../../../components/header', () => ({
-    Header: () => ({
+jest.mock('../../../../components/admin-header', () => ({
+    AdminHeader: () => ({
         type: 'div',
         props: { 'data-testid': 'header', children: 'Header' },
         key: null,

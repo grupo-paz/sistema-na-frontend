@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ProtectedRoute, RootRedirect } from "./routes";
-import { AdminAdministrators, Admin, AdminProfile, AdminMeetings, DefinePassword, LoginPage, AdminChangePassword, AdminSecretary, ForgotPassword, AdminEvents } from "./pages";
+import { AdminAdministrators, Admin, AdminProfile, AdminMeetings, DefinePassword, Home, LoginPage, AdminChangePassword, AdminSecretary, ForgotPassword, AdminEvents } from "./pages";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<RootRedirect />} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/define-password" element={<DefinePassword />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />

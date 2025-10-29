@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Meeting, getMeetings, removeMeeting } from "../../../services";
-import { Loading, Header, withConfirmModal, ConfirmModalOptions } from "../../../components";
+import { Loading, AdminHeader, withConfirmModal, ConfirmModalOptions } from "../../../components";
 import { MeetingsForm, MeetingsList } from "./components";
 
 import "./stylesheets/admin-meetings.css";
@@ -63,7 +63,7 @@ const AdminMeetings: React.FC<{ showConfirm: (options: ConfirmModalOptions) => v
     return (
         <>
             {loading && <Loading />}
-            <Header />
+            <AdminHeader />
             <div className="page-content">
                 <div className="meetings-page-header">
                     <h1>Reuniões</h1>

@@ -13,7 +13,7 @@ jest.mock('../../../../services', () => ({
 
 jest.mock('../../../../components', () => ({
     Loading: () => <div data-testid="loading">Loading...</div>,
-    Header: () => <div data-testid="header">Header</div>,
+    AdminHeader: () => <div data-testid="admin-header">AdminHeader</div>,
     withConfirmModal: (Component: any) => {
         return (props: any) => <Component {...props} showConfirm={mockShowConfirm} />;
     },
@@ -79,7 +79,7 @@ describe('AdminEvents', () => {
     it('should render main components', async () => {
         render(<AdminEvents />);
 
-        expect(screen.getByTestId('header')).toBeInTheDocument();
+        expect(screen.getByTestId('admin-header')).toBeInTheDocument();
         expect(screen.getByText('Eventos')).toBeInTheDocument();
         expect(screen.getByTestId('events-form')).toBeInTheDocument();
         expect(screen.getByTestId('events-list')).toBeInTheDocument();
