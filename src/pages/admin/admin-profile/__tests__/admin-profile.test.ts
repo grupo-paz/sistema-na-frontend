@@ -18,9 +18,9 @@ jest.mock('../../../../services', () => ({
 }));
 
 jest.mock('../../../../components', () => ({
-    Header: () => ({
+    AdminHeader: () => ({
         type: 'div',
-        props: { 'data-testid': 'header', children: 'Header' },
+        props: { 'data-testid': 'admin-header', children: 'AdminHeader' },
         key: null,
         ref: null,
         $$typeof: Symbol.for('react.element')
@@ -58,7 +58,7 @@ describe('AdminProfile', () => {
 
     it('should render header and profile info', async () => {
         renderComponent();
-        expect(screen.getByTestId('header')).toBeInTheDocument();
+        expect(screen.getByTestId('admin-header')).toBeInTheDocument();
         
         await waitFor(() => {
             expect(screen.getByText('Perfil')).toBeInTheDocument();

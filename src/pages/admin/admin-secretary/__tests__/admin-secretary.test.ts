@@ -15,7 +15,7 @@ jest.mock('../../../../services', () => ({
 
 jest.mock('../../../../components', () => ({
     Loading: () => mockReact.createElement('div', { 'data-testid': 'loading' }, 'Loading...'),
-    Header: () => mockReact.createElement('div', { 'data-testid': 'header' }, 'Header'),
+    AdminHeader: () => mockReact.createElement('div', { 'data-testid': 'admin-header' }, 'AdminHeader'),
     withConfirmModal: (Component: React.ComponentType) => (props: any) => 
         mockReact.createElement(Component, { ...props, showConfirm: mockShowConfirm }),
     ConfirmModalOptions: {},

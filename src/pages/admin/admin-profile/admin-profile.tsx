@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Header, Loading } from "../../../components";
+import { AdminHeader, Loading } from "../../../components";
 import { Admin, authStorage } from "../../../services";
 import { getAdminById, updateAdmin } from "../../../services/admin";
 import "./stylesheets/admin-profile.css";
@@ -70,7 +70,7 @@ export function AdminProfile() {
     return (
         <>
             {loading && <Loading />}
-            <Header />
+            <AdminHeader />
             <div className="page-content">
                 <div className="admin-profile-header">
                     <h1>Perfil</h1>

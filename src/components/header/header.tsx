@@ -1,99 +1,59 @@
-import { useNavigate, useLocation } from "react-router-dom";
-import { useState } from "react";
-import { authStorage } from "../../services";
-
-import "./stylesheets/header.css";
+import { useNavigate } from 'react-router-dom';
+import './stylesheets/header.css';
 
 export function Header() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const isAuthenticated = authStorage.getAccessToken();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const navigate = useNavigate();
 
-  const handleLogout = () => {
-    authStorage.clear();
-    navigate("/login");
-    setIsMobileMenuOpen(false);
-  };
+    const handleNavigate = (path: string) => {
+        navigate(path);
+    };
 
-  const handleNavigation = (path: string) => {
-    navigate(path);
-    setIsMobileMenuOpen(false);
-  };
+    return (
+        <header className="home-header">
+            <div className="header-container">
+                <div className="header-brand" onClick={() => handleNavigate('/')}>
+                    <img
+                        src="/assets/na.jpeg"
+                        alt="Logo Grupo Paz"
+                        className="header-logo"
+                    />
+                    <span className="header-brand-text">Grupo<b>Paz</b></span>
+                </div>
+                <nav className="header-nav">
+                    <button
+                        className="nav-button"
+                        onClick={() => handleNavigate('/reunioes')}
+                        aria-label="Reuniões"
+                    >
+                        <svg className="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                        </svg>
+                        <span className="nav-text">Reuniões</span>
+                    </button>
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+                    <button
+                        className="nav-button"
+                        onClick={() => handleNavigate('/eventos')}
+                        aria-label="Eventos"
+                    >
+                        <svg className="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z" />
+                        </svg>
+                        <span className="nav-text">Eventos</span>
+                    </button>
 
-  return (
-    <header className="header">
-      <div className="header-content">
-        {isAuthenticated && location.pathname.includes("/admin") && (
-          <button
-            className="mobile-menu-toggle"
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
-          >
-            <span className={`hamburger-line ${isMobileMenuOpen ? 'open' : ''}`}></span>
-            <span className={`hamburger-line ${isMobileMenuOpen ? 'open' : ''}`}></span>
-            <span className={`hamburger-line ${isMobileMenuOpen ? 'open' : ''}`}></span>
-          </button>
-        )}
-
-        <div className="header-logo">
-          <h1>Grupo<b>Paz</b></h1>
-        </div>
-
-        <nav className={`header-actions ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
-          {isAuthenticated && location.pathname.includes("/admin") && (
-            <>
-              <button
-                className={`header-btn header-btn-secondary ${location.pathname === "/admin/perfil" || location.pathname === "/admin" ? "active" : ""}`}
-                onClick={() => handleNavigation("/admin/perfil")}
-              >
-                Perfil
-              </button>
-              <button
-                className={`header-btn header-btn-secondary ${location.pathname === "/admin/administradores" ? "active" : ""}`}
-                onClick={() => handleNavigation("/admin/administradores")}
-              >
-                Administradores
-              </button>
-              <button
-                className={`header-btn header-btn-secondary ${location.pathname === "/admin/secretaria" ? "active" : ""}`}
-                onClick={() => handleNavigation("/admin/secretaria")}
-              >
-                Secretaria
-              </button>
-              <button
-                className={`header-btn header-btn-secondary ${location.pathname === "/admin/eventos" ? "active" : ""}`}
-                onClick={() => handleNavigation("/admin/eventos")}
-              >
-                Eventos
-              </button>
-              <button
-                className={`header-btn header-btn-secondary ${location.pathname === "/admin/reunioes" ? "active" : ""}`}
-                onClick={() => handleNavigation("/admin/reunioes")}
-              >
-                Reuniões
-              </button>
-              <button
-                className="header-btn header-btn-secondary"
-                onClick={handleLogout}
-              >
-                Sair
-              </button>
-            </>
-          )}
-        </nav>
-
-        {isMobileMenuOpen && (
-          <button
-            className="mobile-menu-overlay"
-            onClick={() => setIsMobileMenuOpen(false)}
-          ></button>
-        )}
-      </div>
-    </header>
-  );
+                    <button
+                        className="nav-button"
+                        onClick={() => handleNavigate('/secretaria')}
+                        aria-label="Secretaria"
+                    >
+                        <svg className="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z" />
+                        </svg>
+                        <span className="nav-text">Secretaria</span>
+                    </button>
+                </nav>
+            </div>
+        </header>
+    );
 }

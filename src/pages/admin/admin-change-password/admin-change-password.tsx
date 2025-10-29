@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ConfirmModalOptions, Header, Loading, withConfirmModal } from "../../../components";
+import { ConfirmModalOptions, AdminHeader, Loading, withConfirmModal } from "../../../components";
 import "./stylesheets/admin-change-password.css";
 import { changeAdminPassword } from "../../../services/auth";
 import { authStorage } from "../../../services";
@@ -49,7 +49,7 @@ const AdminChangePassword: React.FC<{ showConfirm: (options: ConfirmModalOptions
     return (
         <>
             {loading && <Loading />}
-            <Header />
+            <AdminHeader />
             <div className="page-content">
                 <div className="admin-change-password">
                     <div className="admin-change-password-header">

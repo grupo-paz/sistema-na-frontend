@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { ConfirmModalOptions, Header, Loading, withConfirmModal } from "../../../components";
-import { forgotAdminPassword } from "../../../services/auth";
+import { ConfirmModalOptions, Header, Loading, withConfirmModal } from "../../components";
+import { forgotAdminPassword } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
 
-import "./stylesheets/admin-forgot-password.css";
+import "./stylesheets/forgot-password.css";
 
-const AdminForgotPassword: React.FC<{ showConfirm: (options: ConfirmModalOptions) => void }> = ({ showConfirm }) => {
+const ForgotPassword: React.FC<{ showConfirm: (options: ConfirmModalOptions) => void }> = ({ showConfirm }) => {
 
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
@@ -45,12 +45,12 @@ const AdminForgotPassword: React.FC<{ showConfirm: (options: ConfirmModalOptions
             {loading && <Loading />}
             <Header />
             <div className="page-content">
-                <div className="admin-forgot-password">
-                    <div className="admin-forgot-password-header">
+                <div className="forgot-password">
+                    <div className="forgot-password-header">
                         <h1>Recuperar a senha</h1>
                     </div>
-                    <div className="admin-forgot-password-content">
-                        <p className="admin-forgot-password-text">Insira seu email para receber instruções de recuperação de senha.</p>
+                    <div className="forgot-password-content">
+                        <p className="forgot-password-text">Insira seu email para receber instruções de recuperação de senha.</p>
                         <form onSubmit={handleSubmit} className="admin-form">
                             <div className="form-group">
                                 <input
@@ -80,4 +80,4 @@ const AdminForgotPassword: React.FC<{ showConfirm: (options: ConfirmModalOptions
     );
 }
 
-export default withConfirmModal(AdminForgotPassword);
+export default withConfirmModal(ForgotPassword);

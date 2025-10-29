@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { Loading, withConfirmModal, ConfirmModalOptions, Header } from "../../../components";
+import { Loading, withConfirmModal, ConfirmModalOptions, AdminHeader } from "../../../components";
 import { Secretary, UpdateSecretaryBody, getSecretary, updateSecretary, formatDate, formatMoney } from "../../../services";
 
 import "./stylesheets/admin-secretary.css";
@@ -77,7 +77,7 @@ const AdminSecretary: React.FC<{ showConfirm: (options: ConfirmModalOptions) => 
     return (
         <>
             {loading && <Loading />}
-            <Header />
+            <AdminHeader />
             <div className="page-content">
                 <div className="admin-secretary-page-header">
                     <h1>Secretaria</h1>

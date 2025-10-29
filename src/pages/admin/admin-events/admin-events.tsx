@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Event, getEvents, removeEvent } from "../../../services";
-import { Loading, Header, withConfirmModal, ConfirmModalOptions } from "../../../components";
+import { Loading, AdminHeader, withConfirmModal, ConfirmModalOptions } from "../../../components";
 import { EventsForm, EventsList } from "./components";
 
 import "./stylesheets/admin-events.css";
@@ -80,7 +80,7 @@ const AdminEvents: React.FC<{ showConfirm: (options: ConfirmModalOptions) => voi
     return (
         <>
             {loading && <Loading />}
-            <Header />
+            <AdminHeader />
             <div className="page-content">
                 <div className="events-page-header">
                     <h1>Eventos</h1>
