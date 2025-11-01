@@ -110,9 +110,9 @@ const EventsForm: React.FC<EventsFormProps> = ({ setEvents, filterFutureEvents }
                     <form onSubmit={handleCreateSubmit} className={`events-form expandable create-form`}>
                         <div className="form-row">
                             <div className="form-group">
-                                <label htmlFor="event-title">Título</label>
+                                <label htmlFor="admin-event-title">Título</label>
                                 <input
-                                    id="event-title"
+                                    id="admin-event-title"
                                     type="text"
                                     placeholder="Título do evento"
                                     value={createForm.title}
@@ -121,9 +121,9 @@ const EventsForm: React.FC<EventsFormProps> = ({ setEvents, filterFutureEvents }
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="event-category">Categoria</label>
+                                <label htmlFor="admin-event-category">Categoria</label>
                                 <select
-                                    id="event-category"
+                                    id="admin-event-category"
                                     value={createForm.category}
                                     onChange={(e) => setCreateForm({ ...createForm, category: e.target.value })}
                                     required
@@ -137,9 +137,9 @@ const EventsForm: React.FC<EventsFormProps> = ({ setEvents, filterFutureEvents }
                             </div>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="event-description">Descrição</label>
+                            <label htmlFor="admin-event-description">Descrição</label>
                             <textarea
-                                id="event-description"
+                                id="admin-event-description"
                                 placeholder="Descrição do evento"
                                 value={createForm.description}
                                 onChange={(e) => setCreateForm({ ...createForm, description: e.target.value })}
@@ -149,9 +149,9 @@ const EventsForm: React.FC<EventsFormProps> = ({ setEvents, filterFutureEvents }
                         </div>
                         <div className="form-row">
                             <div className="form-group">
-                                <label htmlFor="event-datetime">Data e Hora</label>
+                                <label htmlFor="admin-event-datetime">Data e Hora</label>
                                 <input
-                                    id="event-datetime"
+                                    id="admin-event-datetime"
                                     type="datetime-local"
                                     value={createForm.dateTime}
                                     onChange={(e) => setCreateForm({ ...createForm, dateTime: e.target.value })}
@@ -160,9 +160,9 @@ const EventsForm: React.FC<EventsFormProps> = ({ setEvents, filterFutureEvents }
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="event-location">Local</label>
+                                <label htmlFor="admin-event-location">Local</label>
                                 <input
-                                    id="event-location"
+                                    id="admin-event-location"
                                     type="text"
                                     placeholder="Local do evento"
                                     value={createForm.location}
@@ -172,9 +172,9 @@ const EventsForm: React.FC<EventsFormProps> = ({ setEvents, filterFutureEvents }
                             </div>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="event-type">Tipo</label>
+                            <label htmlFor="admin-event-type">Tipo</label>
                             <select
-                                id="event-type"
+                                id="admin-event-type"
                                 value={createForm.type}
                                 onChange={(e) => setCreateForm({ ...createForm, type: e.target.value })}
                                 required

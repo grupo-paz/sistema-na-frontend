@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Event, getEvents, removeEvent } from "../../../services";
+import { Event, getEvents, removeEvent, filterFutureEvents } from "../../../services";
 import { Loading, AdminHeader, withConfirmModal, ConfirmModalOptions } from "../../../components";
 import { EventsForm, EventsList } from "./components";
 
@@ -11,21 +11,6 @@ const AdminEvents: React.FC<{ showConfirm: (options: ConfirmModalOptions) => voi
     const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
     const [showDeleteConfirmModal, setShowDeleteConfirmModal] = useState(false);
 
-    const filterFutureEvents = async (eventList: Event[]): Promise<Event[]> => {
-        const now = new Date();
-        const futureEvents: Event[] = [];
-
-        for (const event of eventList) {
-            const eventDate = new Date(event.dateTime);
-            if (eventDate > now) {
-                futureEvents.push(event);
-            }
-        }
-
-        return futureEvents;
-    };
-
-    // Carregar eventos na inicialização
     useEffect(() => {
         const loadEvents = async () => {
             setLoading(true);
@@ -82,7 +67,7 @@ const AdminEvents: React.FC<{ showConfirm: (options: ConfirmModalOptions) => voi
             {loading && <Loading />}
             <AdminHeader />
             <div className="page-content">
-                <div className="events-page-header">
+                <div className="admin-events-page-header">
                     <h1>Eventos</h1>
                 </div>
                 <EventsForm
