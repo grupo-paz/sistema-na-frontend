@@ -3,3 +3,4 @@ export { withConfirmModal, type ConfirmModalOptions } from "./confirm-modal";
 export { Loading } from "./loading";
 export { AdminHeader } from "./admin-header";
 export { Header } from "./header";
+export { Footer } from "./footer";

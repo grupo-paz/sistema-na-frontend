@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Header } from "../../components/header";
+import { Header, Footer } from "../../components";
 import { Loading } from "../../components/loading";
 import { getSecretary } from "../../services/secretary";
 import { formatMoney } from "../../services/utils/format-money";
@@ -40,6 +40,7 @@ export const SecretaryPage = () => {
                         <p>{error}</p>
                     </div>
                 </div>
+                <Footer />
             </div>
         );
     }
@@ -84,6 +85,7 @@ export const SecretaryPage = () => {
                     )}
                 </div>
             </div>
+            <Footer />
         </>
     );
 };

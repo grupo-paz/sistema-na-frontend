@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Header, Loading } from "../../components";
+import { Header, Loading, Footer } from "../../components";
 import { getEvents, Event, filterFutureEvents, groupEventsByMonth } from "../../services";
 import { EventCard } from "./event-card";
 
@@ -38,6 +38,7 @@ export const EventsPage = () => {
                         <p>{error}</p>
                     </div>
                 </div>
+                <Footer />
             </div>
         );
     }
@@ -75,6 +76,7 @@ export const EventsPage = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </>
     );
 };
