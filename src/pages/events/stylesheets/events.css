@@ -1,0 +1,119 @@
+.events-page {
+    min-height: 100vh;
+    color: white;
+}
+
+.events-page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    text-align: center;
+    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.events-page-header {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.events-page-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.events-page-icon svg {
+    width: 30px;
+    height: 30px;
+    color: white;
+}
+
+.events-page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.events-page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.events-month-group {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.events-month-title {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    width: fit-content;
+}
+
+.events-page-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+}
+
+.events-page-no-events {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.events-page-no-events p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.error-message {
+    background: rgba(220, 53, 69, 0.1);
+    border: 2px solid rgba(220, 53, 69, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.error-message p {
+    color: #ff6b6b;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .events-page-header h1 {
+        font-size: 2rem;
+    }
+
+    .events-page-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}

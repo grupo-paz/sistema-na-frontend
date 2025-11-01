@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { definePassword, authStorage } from "../../services";
-import { Header, Loading } from "../../components";
+import { AdminHeader, Loading } from "../../components";
 
 import "./stylesheets/define-password.css";
 
@@ -49,7 +49,7 @@ export function DefinePassword() {
   return (
     <>
       {loading && <Loading />}
-      <Header />
+      <AdminHeader />
       <div className="page-content">
         <div className="define-password">
           <div className="define-password-header">
