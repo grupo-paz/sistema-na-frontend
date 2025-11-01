@@ -261,7 +261,7 @@ describe('LoginPage', () => {
 
             it('should have proper heading hierarchy', () => {
                 const heading = screen.getByRole('heading', { level: 2 });
-                expect(heading).toHaveTextContent('Adm Grupo Paz');
+                expect(heading).toHaveTextContent('Administração');
             });
 
             it('should have proper input labels', () => {

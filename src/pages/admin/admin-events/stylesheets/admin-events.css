@@ -1,15 +1,15 @@
-.events-page-header {
+.admin-events-page-header {
     text-align: center;
     margin-bottom: 30px;
 }
 
-.events-page-header h1 {
+.admin-events-page-header h1 {
     font-size: 34px;
     margin: 0;
     color: white;
 }
 
-.events-list {
+.admin-events-list {
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -19,7 +19,7 @@
     list-style: none;
 }
 
-.event-card {
+.admin-event-card {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     border: 1px solid rgb(255, 255, 255);
@@ -33,7 +33,7 @@
     gap: 16px;
 }
 
-.event-info {
+.admin-event-info {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -43,7 +43,7 @@
     position: relative;
 }
 
-.event-header {
+.admin-event-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -51,7 +51,7 @@
     flex-wrap: wrap;
 }
 
-.event-title {
+.admin-event-title {
     font-size: 20px;
     font-weight: 600;
     color: white;
@@ -62,7 +62,7 @@
     white-space: nowrap;
 }
 
-.event-category {
+.admin-event-category {
     background: rgba(255, 255, 255, 0.2);
     color: white;
     padding: 4px 12px;
@@ -73,7 +73,7 @@
     flex-shrink: 0;
 }
 
-.event-description {
+.admin-event-description {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.9);
     line-height: 1.4;
@@ -84,7 +84,7 @@
     overflow: hidden;
 }
 
-.event-details {
+.admin-event-details {
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -92,30 +92,30 @@
     color: rgba(255, 255, 255, 0.7);
 }
 
-.event-datetime {
+.admin-event-datetime {
     font-weight: 500;
     color: rgba(255, 255, 255, 0.9);
 }
 
-.event-location,
-.event-type {
+.admin-event-location,
+.admin-event-type {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.event-author {
+.admin-event-author {
     font-size: 12px;
     color: rgba(255, 255, 255, 0.6);
     font-style: italic;
 }
 
-.event-actions {
+.admin-event-actions {
     flex-shrink: 0;
     display: flex;
     gap: 8px;
     align-items: flex-start;
 }
 
-.event-action-btn {
+.admin-event-action-btn {
     background: #0000004f;
     border: none;
     border-radius: 12px;
@@ -127,19 +127,19 @@
     transition: background 0.2s;
 }
 
-.event-action-btn:hover {
+.admin-event-action-btn:hover {
     background: #0000009b;
 }
 
-.event-action-btn.edit-btn:hover {
+.admin-event-action-btn.edit-btn:hover {
     background: rgba(34, 197, 94, 0.3);
 }
 
-.event-action-btn.delete-btn:hover {
+.admin-event-action-btn.delete-btn:hover {
     background: rgba(239, 68, 68, 0.3);
 }
 
-.event-action-btn svg {
+.admin-event-action-btn svg {
     width: 20px;
     height: 20px;
     fill: #fff;
@@ -323,7 +323,7 @@
         gap: 16px;
     }
 
-    .event-card {
+    .admin-event-card {
         flex-direction: column;
         gap: 16px;
     }

@@ -9,6 +9,7 @@ jest.mock('../../../../services', () => ({
     removeEvent: jest.fn(),
     formatDate: jest.fn(),
     updateEvent: jest.fn(),
+    filterFutureEvents: jest.fn(),
 }));
 
 jest.mock('../../../../components', () => ({
@@ -74,6 +75,7 @@ describe('AdminEvents', () => {
     beforeEach(() => {
         jest.clearAllMocks();
         mockServices.getEvents.mockResolvedValue([futureEvent]);
+        mockServices.filterFutureEvents.mockResolvedValue([futureEvent]);
     });
 
     it('should render main components', async () => {
@@ -101,22 +103,21 @@ describe('AdminEvents', () => {
     });
 
     it('should filter future events correctly', async () => {
+        mockServices.getEvents.mockResolvedValue([futureEvent, pastEvent]);
+        mockServices.filterFutureEvents.mockResolvedValue([futureEvent]);
+        
         render(<AdminEvents />);
         
         await waitFor(() => {
             expect(mockServices.getEvents).toHaveBeenCalled();
-        });
-
-        mockServices.getEvents.mockResolvedValue([futureEvent, pastEvent]);
-        
-        fireEvent.click(screen.getByText('Set Events'));
-        
-        await waitFor(() => {
-            expect(mockServices.getEvents).toHaveBeenCalled();
+            expect(mockServices.filterFutureEvents).toHaveBeenCalledWith([futureEvent, pastEvent]);
         });
     });
 
     it('should handle confirm delete', async () => {
+        mockServices.getEvents.mockResolvedValue([futureEvent]);
+        mockServices.filterFutureEvents.mockResolvedValue([futureEvent]);
+        
         render(<AdminEvents />);
 
         await waitFor(() => {
@@ -125,7 +126,7 @@ describe('AdminEvents', () => {
 
         await waitFor(() => {
             expect(screen.getByText('Delete Event')).toBeInTheDocument();
-        }, { timeout: 5000 });
+        });
 
         fireEvent.click(screen.getByText('Delete Event'));
 
@@ -138,6 +139,8 @@ describe('AdminEvents', () => {
 
     it('should delete event when confirmed', async () => {
         mockServices.removeEvent.mockResolvedValue({ message: 'Evento removido com sucesso' });
+        mockServices.getEvents.mockResolvedValue([futureEvent]);
+        mockServices.filterFutureEvents.mockResolvedValue([futureEvent]);
         
         render(<AdminEvents />);
 
@@ -147,11 +150,12 @@ describe('AdminEvents', () => {
 
         await waitFor(() => {
             expect(screen.getByText('Delete Event')).toBeInTheDocument();
-        }, { timeout: 5000 });
+        });
 
         fireEvent.click(screen.getByText('Delete Event'));
 
         mockServices.getEvents.mockResolvedValue([]);
+        mockServices.filterFutureEvents.mockResolvedValue([]);
 
         const confirmCall = mockShowConfirm.mock.calls[0][0];
         await confirmCall.onConfirm();
@@ -176,6 +180,8 @@ describe('AdminEvents', () => {
     it('should handle error when deleting event', async () => {
         const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
         mockServices.removeEvent.mockRejectedValue(new Error('Delete error'));
+        mockServices.getEvents.mockResolvedValue([futureEvent]);
+        mockServices.filterFutureEvents.mockResolvedValue([futureEvent]);
 
         render(<AdminEvents />);
 
@@ -185,7 +191,7 @@ describe('AdminEvents', () => {
 
         await waitFor(() => {
             expect(screen.getByText('Delete Event')).toBeInTheDocument();
-        }, { timeout: 5000 });
+        });
 
         fireEvent.click(screen.getByText('Delete Event'));
         const confirmCall = mockShowConfirm.mock.calls[0][0];

@@ -31,7 +31,7 @@ jest.mock('../../../components', () => {
     });
 
     return {
-        Header: () => ({
+        AdminHeader: () => ({
             type: 'div',
             props: { 'data-testid': 'header', children: 'Header' },
             key: null,

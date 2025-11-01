@@ -196,9 +196,9 @@ const EventsList: React.FC<EventsListProps> = ({ events, setEvents, filterFuture
                 {groupedEvents.map((monthGroup) => (
                     <div key={monthGroup.key} className="month-group">
                         <span className="month-title">{monthGroup.label}</span>
-                        <ul className="events-list">
+                        <ul className="admin-events-list">
                             {monthGroup.events.map((event) => (
-                                <li key={event.id} className="event-card">
+                                <li key={event.id} className="admin-event-card">
                                     {editingEventId === event.id ? (
                                         <div className="inline-edit-form">
                                             <div className="form-row">
@@ -305,22 +305,22 @@ const EventsList: React.FC<EventsListProps> = ({ events, setEvents, filterFuture
                                     ) : (
                                         // Visualização normal do evento
                                         <>
-                                            <div className="event-info">
-                                                <div className="event-header">
-                                                    <span className="event-title">{event.title}</span>
-                                                    <span className="event-category">{event.category}</span>
+                                            <div className="admin-event-info">
+                                                <div className="admin-event-header">
+                                                    <span className="admin-event-title">{event.title}</span>
+                                                    <span className="admin-event-category">{event.category}</span>
                                                 </div>
-                                                <span className="event-description">{event.description}</span>
-                                                <div className="event-details">
-                                                    <span className="event-datetime">{formatDate(event.dateTime)}</span>
-                                                    <span className="event-location">{event.location}</span>
-                                                    <span className="event-type">{event.type}</span>
+                                                <span className="admin-event-description">{event.description}</span>
+                                                <div className="admin-event-details">
+                                                    <span className="admin-event-datetime">{formatDate(event.dateTime)}</span>
+                                                    <span className="admin-event-location">{event.location}</span>
+                                                    <span className="admin-event-type">{event.type}</span>
                                                 </div>
-                                                <span className="event-author">Por: {event.author.name}</span>
+                                                <span className="admin-event-author">Por: {event.author.name}</span>
                                             </div>
-                                            <div className="event-actions">
+                                            <div className="admin-event-actions">
                                                 <button
-                                                    className="event-action-btn edit-btn"
+                                                    className="admin-event-action-btn edit-btn"
                                                     title="Editar"
                                                     onClick={() => handleEdit(event)}
                                                 >
@@ -329,7 +329,7 @@ const EventsList: React.FC<EventsListProps> = ({ events, setEvents, filterFuture
                                                     </svg>
                                                 </button>
                                                 <button
-                                                    className="event-action-btn delete-btn"
+                                                    className="admin-event-action-btn delete-btn"
                                                     title="Remover"
                                                     onClick={() => onConfirmDelete(event.id)}
                                                 >
