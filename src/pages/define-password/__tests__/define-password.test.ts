@@ -22,7 +22,7 @@ jest.mock('../../../services', () => ({
 
 // Mock dos componentes
 jest.mock('../../../components', () => ({
-    Header: () => ({
+    AdminHeader: () => ({
         type: 'div',
         props: { 'data-testid': 'header', children: 'Header' },
         key: null,

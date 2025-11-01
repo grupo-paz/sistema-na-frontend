@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ConfirmModalOptions, Header, Loading, withConfirmModal } from "../../components";
+import { ConfirmModalOptions, AdminHeader, Loading, withConfirmModal } from "../../components";
 import { forgotAdminPassword } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -43,7 +43,7 @@ const ForgotPassword: React.FC<{ showConfirm: (options: ConfirmModalOptions) => 
     return (
         <>
             {loading && <Loading />}
-            <Header />
+            <AdminHeader />
             <div className="page-content">
                 <div className="forgot-password">
                     <div className="forgot-password-header">
