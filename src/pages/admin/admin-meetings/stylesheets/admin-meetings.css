@@ -1,15 +1,15 @@
-.meetings-page-header {
+.admin-meetings-page-header {
     text-align: center;
     margin-bottom: 30px;
 }
 
-.meetings-page-header h1 {
+.admin-meetings-page-header h1 {
     font-size: 34px;
     margin: 0;
     color: white;
 }
 
-.meetings-list {
+.admin-meetings-list {
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -19,7 +19,7 @@
     list-style: none;
 }
 
-.meeting-card {
+.admin-meeting-page-card {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     border: 1px solid rgb(255, 255, 255);
@@ -33,7 +33,7 @@
     gap: 16px;
 }
 
-.meeting-info {
+.admin-meeting-info {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -43,7 +43,7 @@
     position: relative;
 }
 
-.meeting-header {
+.admin-meeting-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -51,11 +51,11 @@
     flex-wrap: wrap;
 }
 
-.meeting-header h3 {
+.admin-meeting-header h3 {
     margin: 0;
 }
 
-.meeting-title {
+.admin-meeting-title {
     font-size: 20px;
     font-weight: 600;
     color: white;
@@ -66,7 +66,7 @@
     white-space: nowrap;
 }
 
-.meeting-category {
+.admin-meeting-category {
     background: rgba(255, 255, 255, 0.2);
     color: white;
     padding: 4px 12px;
@@ -77,7 +77,7 @@
     flex-shrink: 0;
 }
 
-.meeting-description {
+.admin-meeting-description {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.9);
     line-height: 1.4;
@@ -88,7 +88,7 @@
     overflow: hidden;
 }
 
-.meeting-details {
+.admin-meeting-details {
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -96,30 +96,30 @@
     color: rgba(255, 255, 255, 0.7);
 }
 
-.meeting-datetime {
+.admin-meeting-datetime {
     font-weight: 500;
     color: rgba(255, 255, 255, 0.9);
 }
 
-.meeting-location,
-.meeting-type {
+.admin-meeting-location,
+.admin-meeting-type {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.meeting-author {
+.admin-meeting-author {
     font-size: 12px;
     color: rgba(255, 255, 255, 0.6);
     font-style: italic;
 }
 
-.meeting-actions {
+.admin-meeting-actions {
     flex-shrink: 0;
     display: flex;
     gap: 8px;
     align-items: flex-start;
 }
 
-.meeting-action-btn {
+.admin-meeting-action-btn {
     background: #0000004f;
     border: none;
     border-radius: 12px;
@@ -131,19 +131,19 @@
     transition: background 0.2s;
 }
 
-.meeting-action-btn:hover {
+.admin-meeting-action-btn:hover {
     background: #0000009b;
 }
 
-.meeting-action-btn.edit-btn:hover {
+.admin-meeting-action-btn.edit-btn:hover {
     background: rgba(34, 197, 94, 0.3);
 }
 
-.meeting-action-btn.delete-btn:hover {
+.admin-meeting-action-btn.delete-btn:hover {
     background: rgba(239, 68, 68, 0.3);
 }
 
-.meeting-action-btn svg {
+.admin-meeting-action-btn svg {
     width: 20px;
     height: 20px;
     fill: #fff;
@@ -327,7 +327,7 @@
         gap: 16px;
     }
 
-    .meeting-card {
+    .admin-meeting-card {
         flex-direction: column;
         gap: 16px;
     }
