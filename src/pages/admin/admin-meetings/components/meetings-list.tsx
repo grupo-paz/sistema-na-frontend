@@ -147,9 +147,9 @@ const MeetingsList: React.FC<MeetingsListProps> = ({ meetings, setMeetings, onCo
             <div className="meetings-list-section">
                 <h2>Reuniões Cadastradas</h2>
                 {meetings.length === 0 && !loading && <p className="no-meetings">Nenhuma reunião cadastrada.</p>}
-                <ul className="meetings-list">
+                <ul className="admin-meetings-list">
                     {meetings.map((meeting) => (
-                        <li key={meeting.id} className="meeting-card">
+                        <li key={meeting.id} className="admin-meeting-page-card">
                             {editingMeetingId === meeting.id ? (
                                 <div className="inline-edit-form">
                                     <div className="form-row">
@@ -247,19 +247,19 @@ const MeetingsList: React.FC<MeetingsListProps> = ({ meetings, setMeetings, onCo
                                 </div>
                             ) : (
                                 <>
-                                    <div className="meeting-info">
-                                        <div className="meeting-header">
+                                    <div className="admin-meeting-info">
+                                        <div className="admin-meeting-header">
                                             <h3>{meeting.dayOfWeek} - {meeting.time}</h3>
-                                            <span className="meeting-category">{meeting.category}</span>
+                                            <span className="admin-meeting-category">{meeting.category}</span>
                                         </div>
-                                        <div className="meeting-details">
-                                            <span className="meeting-type">{meeting.type}</span>
-                                            <span className="meeting-room-opener">Responsável por abrir: {meeting.roomOpener}</span>
+                                        <div className="admin-meeting-details">
+                                            <span className="admin-meeting-type">{meeting.type}</span>
+                                            <span className="admin-meeting-room-opener">Responsável por abrir: {meeting.roomOpener}</span>
                                         </div>
                                     </div>
-                                    <div className="meeting-actions">
+                                    <div className="admin-meeting-actions">
                                         <button
-                                            className="meeting-action-btn edit-btn"
+                                            className="admin-meeting-action-btn edit-btn"
                                             title="Editar"
                                             onClick={() => handleEdit(meeting)}
                                         >
@@ -268,7 +268,7 @@ const MeetingsList: React.FC<MeetingsListProps> = ({ meetings, setMeetings, onCo
                                             </svg>
                                         </button>
                                         <button
-                                            className="meeting-action-btn delete-btn"
+                                            className="admin-meeting-action-btn delete-btn"
                                             title="Remover"
                                             onClick={() => onConfirmDelete(meeting.id)}
                                         >

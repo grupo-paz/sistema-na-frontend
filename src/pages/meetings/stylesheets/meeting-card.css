@@ -1,0 +1,27 @@
+.meeting-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 5px;
+  text-align: left;
+  font-size: 13px;
+}
+
+.meeting-card-time {
+  font-weight: bold;
+  color: #3498db;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.meeting-card-category {
+  color: #ecf0f1;
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .meeting-card {
+    font-size: 15px;
+  }
+}

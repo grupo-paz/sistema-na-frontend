@@ -65,7 +65,7 @@ const AdminMeetings: React.FC<{ showConfirm: (options: ConfirmModalOptions) => v
             {loading && <Loading />}
             <AdminHeader />
             <div className="page-content">
-                <div className="meetings-page-header">
+                <div className="admin-meetings-page-header">
                     <h1>Reuniões</h1>
                 </div>
                 <MeetingsForm
