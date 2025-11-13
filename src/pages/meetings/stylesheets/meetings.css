@@ -59,13 +59,15 @@
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.3s ease;
+  border: solid 1px rgba(255, 255, 255, 0.1);
   min-height: 65vh;
   display: flex;
   flex-direction: column;
 }
 
 .meetings-day-column:hover {
-  background-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .meetings-day-column.today {
@@ -79,14 +81,15 @@
 }
 
 .meetings-day-header {
-  background: rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #4e469f 0%, #4f6fff 100%);
   padding: 15px;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
 .meetings-day-column.today .meetings-day-header {
-  background: rgba(52, 152, 219, 0.2);
+  background: linear-gradient(135deg, #4f6fff 0%, #4e469f 100%);
   border-bottom: 2px solid #34446c;
 }
 
@@ -99,7 +102,7 @@
 
 .meetings-day-full {
   font-size: 13px;
-  color: #95a5a6;
+  color: white;
 }
 
 /* Day Content Area */

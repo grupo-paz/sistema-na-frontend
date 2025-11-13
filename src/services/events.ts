@@ -62,3 +62,14 @@ export async function removeEvent(id: string) {
     headers: { "x-api-key": API_KEY },
   });
 }
+
+/**
+ * Busca o próximo evento
+ * @returns Próximo evento ou null
+ */
+export async function getNextEvent() {
+  return request<Event | null>(`/events/next`, {
+    method: "GET",
+    headers: { "x-api-key": API_KEY },
+  });
+}

@@ -5,7 +5,7 @@ import { Meeting } from '../../../services/types';
 describe('MeetingCard', () => {
     const mockMeeting: Meeting = {
         id: '1',
-        category: 'Oração',
+        category: 'Passos',
         dayOfWeek: 'Segunda-feira',
         time: '19:30',
         type: 'Presencial',
@@ -26,10 +26,10 @@ describe('MeetingCard', () => {
     it('should render meeting card correctly', () => {
         renderMeetingCard();
 
-        expect(screen.getByText('Reunião de Oração')).toBeInTheDocument();
+        expect(screen.getByText('Passos')).toBeInTheDocument();
         expect(screen.getByText('19:30')).toBeInTheDocument();
         expect(screen.getByText('Presencial')).toBeInTheDocument();
-        expect(screen.getByText('Abridor: João Silva')).toBeInTheDocument();
+        expect(screen.getByText('Responsável por abrir: João Silva')).toBeInTheDocument();
     });
 
     it('should have correct CSS class structure', () => {
@@ -51,8 +51,8 @@ describe('MeetingCard', () => {
 
         renderMeetingCard(cultoMeeting);
 
-        expect(screen.getByText('Reunião de Culto')).toBeInTheDocument();
-        expect(screen.getByText('Abridor: Maria Santos')).toBeInTheDocument();
+        expect(screen.getByText('Culto')).toBeInTheDocument();
+        expect(screen.getByText('Responsável por abrir: Maria Santos')).toBeInTheDocument();
     });
 
     it('should render meeting with different type', () => {
@@ -85,7 +85,7 @@ describe('MeetingCard', () => {
 
         renderMeetingCard(longNameMeeting);
 
-        expect(screen.getByText('Abridor: João Pedro da Silva Santos Oliveira')).toBeInTheDocument();
+        expect(screen.getByText('Responsável por abrir: João Pedro da Silva Santos Oliveira')).toBeInTheDocument();
     });
 
     it('should render meeting with minimal data', () => {
@@ -103,10 +103,10 @@ describe('MeetingCard', () => {
 
         renderMeetingCard(minimalMeeting);
 
-        expect(screen.getByText('Reunião de A')).toBeInTheDocument();
+        expect(screen.getByText('A')).toBeInTheDocument();
         expect(screen.getByText('10:00')).toBeInTheDocument();
         expect(screen.getByText('B')).toBeInTheDocument();
-        expect(screen.getByText('Abridor: C')).toBeInTheDocument();
+        expect(screen.getByText('Responsável por abrir: C')).toBeInTheDocument();
     });
 
     it('should maintain structure even with empty strings', () => {
@@ -145,14 +145,14 @@ describe('MeetingCard', () => {
     it('should format category text correctly', () => {
         renderMeetingCard();
 
-        const categoryText = screen.getByText(/Reunião de/);
-        expect(categoryText).toHaveTextContent('Reunião de Oração');
+        const categoryText = screen.getByText(/Passos/);
+        expect(categoryText).toHaveTextContent('Passos');
     });
 
     it('should format opener text correctly', () => {
         renderMeetingCard();
 
-        const openerText = screen.getByText(/Abridor:/);
-        expect(openerText).toHaveTextContent('Abridor: João Silva');
+        const openerText = screen.getByText(/Responsável por abrir:/);
+        expect(openerText).toHaveTextContent('Responsável por abrir: João Silva');
     });
 });

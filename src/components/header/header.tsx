@@ -22,6 +22,17 @@ export function Header() {
                 <nav className="header-nav">
                     <button
                         className="nav-button"
+                        onClick={() => handleNavigate('/')}
+                        aria-label="Início"
+                    >
+                        <svg className="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                        </svg>
+                        <span className="nav-text">Início</span>
+                    </button>
+
+                    <button
+                        className="nav-button"
                         onClick={() => handleNavigate('/reunioes')}
                         aria-label="Reuniões"
                     >

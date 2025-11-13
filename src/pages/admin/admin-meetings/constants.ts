@@ -1,8 +1,8 @@
 export const MEETING_CATEGORIES = [
     { value: "", label: "Selecione uma categoria" },
-    { value: "Tradicional", label: "Tradicional" },
-    { value: "Estudo de passos", label: "Estudo de passos" },
-    { value: "Tema", label: "Tema" },
+    { value: "Reunião Tradicional", label: "Reunião Tradicional" },
+    { value: "Reunião de Estudo de passos", label: "Reunião de Estudo de passos" },
+    { value: "Reunião de Temas", label: "Reunião de Temas" },
     { value: "Outro", label: "Outro" }
 ];
 
