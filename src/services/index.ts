@@ -13,9 +13,9 @@ export type {
 
 export { getSecretary, updateSecretary } from "./secretary";
 
-export { getEvents, getEvent, createEvent, updateEvent, removeEvent } from "./events";
+export { getEvents, getEvent, createEvent, updateEvent, removeEvent, getNextEvent } from "./events";
 
-export { createMeeting, getMeetings, getMeetingById, updateMeeting, removeMeeting } from "./meetings";
+export { createMeeting, getMeetings, getMeetingById, updateMeeting, removeMeeting, getTodayMeeting } from "./meetings";
 
 export type { 
   Secretary, 

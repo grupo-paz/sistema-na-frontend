@@ -1,16 +1,18 @@
 .event-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    padding: 1.5rem;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    padding-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
 }
 
 .event-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .event-content {
@@ -25,6 +27,8 @@
     justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .event-title {
@@ -38,8 +42,7 @@
 }
 
 .event-category {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
+    background: linear-gradient(135deg, #4e469f 0%, #4f6fff 100%);
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.85rem;
@@ -47,6 +50,7 @@
     white-space: nowrap;
     flex-shrink: 0;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
 
 .event-description {
@@ -99,25 +103,19 @@
         padding: 20px;
         margin-bottom: 12px;
     }
-    
-    .event-header {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-    }
-    
+
     .event-title {
         font-size: 1.3rem;
     }
-    
+
     .event-category {
         align-self: flex-start;
     }
-    
+
     .event-details {
         gap: 10px;
     }
-    
+
     .event-datetime,
     .event-location,
     .event-type {
