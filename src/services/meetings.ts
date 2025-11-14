@@ -52,3 +52,13 @@ export const removeMeeting = async (id: string): Promise<MessageResponse> => {
         headers: { "x-api-key": API_KEY },
     });
 };
+
+/**
+ * Busca a reunião de hoje
+ */
+export const getTodayMeeting = async (): Promise<Meeting | null> => {
+    return request<Meeting | null>("/meetings/today", {
+        method: "GET",
+        headers: { "x-api-key": API_KEY },
+    });
+};
