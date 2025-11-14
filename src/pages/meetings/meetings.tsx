@@ -19,7 +19,7 @@ export const MeetingsPage = () => {
     const [meetings, setMeetings] = useState<Meeting[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [selectedMeeting, setSelectedMeeting] = useState<Meeting | null>(null);
+   const [_selectedMeeting, _setSelectedMeeting] = useState(null);
     const [currentDayIndex] = useState(new Date().getDay());
     const calendarRef = useRef<HTMLDivElement>(null);
 
