@@ -67,14 +67,31 @@ export { refreshAccessToken, authStorage } from './base';
 export function isTokenValid(token: string): boolean {
   if (!token) return false;
 
+  // Função interna para decodificar Base64Url (necessário para JWT)
+  function urlBase64Decode(str: string): string {
+    let output = str.replace(/-/g, '+').replace(/_/g, '/');
+    while (output.length % 4) { // Adiciona padding (=) se necessário
+      output += '=';
+    }
+    try {
+      // Usa atob() após a correção de caracteres
+      return atob(output); 
+    } catch (e) {
+      return ''; // Retorna vazio se a decodificação falhar
+    }
+  }
+
   try {
     const parts = token.split('.');
     if (parts.length !== 3) {
       return false; // Token mal formatado
     }
 
-    const payload = JSON.parse(atob(parts[1]));
+    // Usa a decodificação Base64Url para obter o payload
+    const decodedPayload = urlBase64Decode(parts[1]);
+    const payload = JSON.parse(decodedPayload);
 
+    // 'exp' é a data de expiração em segundos (timestamp UNIX)
     const expirationTime = payload.exp * 1000; // Converte para milissegundos
     const now = Date.now();
 
@@ -82,8 +99,8 @@ export function isTokenValid(token: string): boolean {
     return now < expirationTime;
 
   } catch (e) {
-    // Falha na decodificação (token corrompido)
-    console.error("Falha na decodificação do token:", e);
+    // Falha na decodificação ou JSON inválido
+    console.error("Falha na decodificação ou JSON inválido do token:", e);
     return false;
   }
 }
