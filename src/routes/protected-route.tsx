@@ -8,11 +8,13 @@ export function ProtectedRoute() {
         return <Navigate to="/login" replace />
     }
     
-    if (!isTokenValid(access)) {
 
-        authStorage.clearTokens(); 
+    if (!isTokenValid(access)) {
+        
+        authStorage.clear()
         
         return <Navigate to="/login" replace />
     }
+
     return <Outlet />
 }
