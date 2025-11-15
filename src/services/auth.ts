@@ -1,12 +1,6 @@
 import { API_KEY, authStorage, request } from "./base";
 import { LoginResponse, MessageResponse } from "./types";
 
-/**
- * Realiza login do usuário
- * @param email Email do usuário
- * @param password Senha do usuário
- * @returns Objeto com tokens de acesso e refresh
- */
 export async function login(email: string, password: string) {
   const data = await request<LoginResponse>("/auth/login", {
     method: "POST",
@@ -20,12 +14,6 @@ export async function login(email: string, password: string) {
   return data;
 }
 
-/**
- * Define uma senha para um administrador recém-criado
- * @param token Token de definição de senha
- * @param password Nova senha do usuário
- * @returns Objeto com mensagem de sucesso
- */
 export async function definePassword(token: string, password: string) {
   return request<MessageResponse>("/admins/define-password", {
     method: "POST",
@@ -35,13 +23,6 @@ export async function definePassword(token: string, password: string) {
   });
 }
 
-/**
- * Altera a senha de um administrador
- * @param adminId ID do administrador
- * @param currentPassword Senha atual
- * @param newPassword Nova senha
- * @returns Mensagem de sucesso ou erro
- */
 export async function changeAdminPassword(adminId: string, currentPassword: string, newPassword: string) {
   return request<MessageResponse>(`/admins/change-password`, {
     method: "POST",
@@ -49,11 +30,7 @@ export async function changeAdminPassword(adminId: string, currentPassword: stri
     body: JSON.stringify({ adminId, currentPassword, newPassword }),
   });
 }
-/**
- * Envia email para recuperar a senha de um administrador
- * @param email Email do administrador
- * @returns Mensagem de sucesso ou erro
- */
+
 export async function forgotAdminPassword(email: string) {
   return request<MessageResponse>(`/auth/forgot-password`, {
     method: "POST",
@@ -67,39 +44,45 @@ export { refreshAccessToken, authStorage } from './base';
 export function isTokenValid(token: string): boolean {
   if (!token) return false;
 
-  // Função interna para decodificar Base64Url (necessário para JWT)
   function urlBase64Decode(str: string): string {
     let output = str.replace(/-/g, '+').replace(/_/g, '/');
-    while (output.length % 4) { // Adiciona padding (=) se necessário
+    while (output.length % 4) {
       output += '=';
     }
     try {
-      // Usa atob() após a correção de caracteres
-      return atob(output); 
+      const binaryString = atob(output);
+      const bytes = new Uint8Array(binaryString.length);
+      for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+      const decoder = new TextDecoder('utf-8');
+      return decoder.decode(bytes);
+
     } catch (e) {
-      return ''; // Retorna vazio se a decodificação falhar
+      console.error("Erro ao decodificar token Base64Url:", e);
+      return '';
     }
   }
 
   try {
     const parts = token.split('.');
     if (parts.length !== 3) {
-      return false; // Token mal formatado
+      return false;
     }
 
-    // Usa a decodificação Base64Url para obter o payload
     const decodedPayload = urlBase64Decode(parts[1]);
+    if (!decodedPayload) {
+      return false;
+    }
+
     const payload = JSON.parse(decodedPayload);
 
-    // 'exp' é a data de expiração em segundos (timestamp UNIX)
-    const expirationTime = payload.exp * 1000; // Converte para milissegundos
+    const expirationTime = payload.exp * 1000;
     const now = Date.now();
 
-    // O token é válido se a hora atual for menor que a hora de expiração
     return now < expirationTime;
 
   } catch (e) {
-    // Falha na decodificação ou JSON inválido
     console.error("Falha na decodificação ou JSON inválido do token:", e);
     return false;
   }
