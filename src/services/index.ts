@@ -1,6 +1,6 @@
 export { API_BASE_URL, API_KEY, request, authStorage, refreshAccessToken } from "./base";
 
-export { login, definePassword } from "./auth";
+export { login, definePassword, isTokenValid } from "./auth";
 
 export { registerAdmin, getAdmins, removeAdmin } from "./admin";
 

@@ -63,3 +63,27 @@ export async function forgotAdminPassword(email: string) {
 }
 
 export { refreshAccessToken, authStorage } from './base';
+
+export function isTokenValid(token: string): boolean {
+  if (!token) return false;
+
+  try {
+    const parts = token.split('.');
+    if (parts.length !== 3) {
+      return false; // Token mal formatado
+    }
+
+    const payload = JSON.parse(atob(parts[1]));
+
+    const expirationTime = payload.exp * 1000; // Converte para milissegundos
+    const now = Date.now();
+
+    // O token é válido se a hora atual for menor que a hora de expiração
+    return now < expirationTime;
+
+  } catch (e) {
+    // Falha na decodificação (token corrompido)
+    console.error("Falha na decodificação do token:", e);
+    return false;
+  }
+}
