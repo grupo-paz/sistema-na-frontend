@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { authStorage } from "../../services";
-import logoImage from '../../assets/na.jpeg'; // A importação correta
+import logoImage from "../../assets/na.jpeg";
 
 import "./stylesheets/admin-header.css";
 
