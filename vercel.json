@@ -1,5 +1,17 @@
 {
+  "version": 2,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/login",
+      "permanent": true,
+      "host": "sistema-na-admin.vercel.app"
+    }
+  ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+    {
+      "source": "/(.*)",
+      "destination": "/dist/server.js"
+    }
   ]
 }
