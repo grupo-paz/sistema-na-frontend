@@ -19,6 +19,7 @@ const mockMeeting = {
     id: 'meeting-1',
     dayOfWeek: 'Segunda-feira',
     time: '10:00',
+    endTime: '11:30',
     type: 'Aberta',
     category: 'Tradicional',
     roomOpener: 'João Silva',
@@ -43,7 +44,8 @@ describe('MeetingsForm', () => {
         fireEvent.click(screen.getByText('Adicionar Nova Reunião'));
         
         expect(screen.getByLabelText('Dia da Semana')).toBeInTheDocument();
-        expect(screen.getByLabelText('Horário')).toBeInTheDocument();
+        expect(screen.getByLabelText('Horário de Início')).toBeInTheDocument();
+        expect(screen.getByLabelText('Horário de Término')).toBeInTheDocument();
         expect(screen.getByLabelText('Categoria')).toBeInTheDocument();
         expect(screen.getByLabelText('Tipo')).toBeInTheDocument();
         expect(screen.getByLabelText('Responsável por Abrir a Sala')).toBeInTheDocument();

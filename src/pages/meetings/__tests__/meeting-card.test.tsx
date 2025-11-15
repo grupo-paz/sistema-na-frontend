@@ -8,6 +8,7 @@ describe('MeetingCard', () => {
         category: 'Passos',
         dayOfWeek: 'Segunda-feira',
         time: '19:30',
+        endTime: '21:00',
         type: 'Presencial',
         roomOpener: 'João Silva',
         createdAt: '2025-01-01T00:00:00Z',
@@ -27,7 +28,7 @@ describe('MeetingCard', () => {
         renderMeetingCard();
 
         expect(screen.getByText('Passos')).toBeInTheDocument();
-        expect(screen.getByText('19:30')).toBeInTheDocument();
+        expect(screen.getByText(/19:30.*às.*21:00/)).toBeInTheDocument();
         expect(screen.getByText('Presencial')).toBeInTheDocument();
         expect(screen.getByText('Responsável por abrir: João Silva')).toBeInTheDocument();
     });
@@ -69,12 +70,13 @@ describe('MeetingCard', () => {
     it('should render meeting with different time', () => {
         const morningMeeting: Meeting = {
             ...mockMeeting,
-            time: '09:00'
+            time: '09:00',
+            endTime: '10:30'
         };
 
         renderMeetingCard(morningMeeting);
 
-        expect(screen.getByText('09:00')).toBeInTheDocument();
+        expect(screen.getByText(/09:00.*às.*10:30/)).toBeInTheDocument();
     });
 
     it('should render meeting with long opener name', () => {
@@ -94,6 +96,7 @@ describe('MeetingCard', () => {
             category: 'A',
             dayOfWeek: 'Domingo',
             time: '10:00',
+            endTime: '11:00',
             type: 'B',
             roomOpener: 'C',
             createdAt: '2025-01-01T00:00:00Z',
@@ -104,7 +107,7 @@ describe('MeetingCard', () => {
         renderMeetingCard(minimalMeeting);
 
         expect(screen.getByText('A')).toBeInTheDocument();
-        expect(screen.getByText('10:00')).toBeInTheDocument();
+        expect(screen.getByText(/10:00.*às.*11:00/)).toBeInTheDocument();
         expect(screen.getByText('B')).toBeInTheDocument();
         expect(screen.getByText('Responsável por abrir: C')).toBeInTheDocument();
     });
@@ -114,6 +117,7 @@ describe('MeetingCard', () => {
             ...mockMeeting,
             category: '',
             time: '',
+            endTime: '',
             type: '',
             roomOpener: ''
         };

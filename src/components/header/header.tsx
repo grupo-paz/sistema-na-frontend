@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import logoImage from '../../../assets/na.jpeg';
 import './stylesheets/header.css';
 
 export function Header() {
@@ -13,7 +14,7 @@ export function Header() {
             <div className="header-container">
                 <div className="header-brand" onClick={() => handleNavigate('/')}>
                     <img
-                        src="/assets/na.jpeg"
+                        src={logoImage}
                         alt="Logo Grupo Paz"
                         className="header-logo"
                     />

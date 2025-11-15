@@ -50,6 +50,7 @@ interface Meeting {
     id: string;
     dayOfWeek: string;
     time: string;
+    endTime: string;
     type: string;
     category: string;
     roomOpener: string;
@@ -78,6 +79,7 @@ describe('Home', () => {
             id: '1',
             dayOfWeek: 'Quinta-feira',
             time: '19:30',
+            endTime: '21:00',
             type: 'Fechada',
             category: 'Oração',
             roomOpener: 'João Silva',
@@ -89,6 +91,7 @@ describe('Home', () => {
             id: '2',
             dayOfWeek: 'Quinta-feira',
             time: '20:30',
+            endTime: '22:00',
             type: 'Aberta',
             category: 'Tradicional',
             roomOpener: 'Maria Santos',
@@ -152,8 +155,8 @@ describe('Home', () => {
         await waitFor(() => {
             expect(screen.getByText('Oração')).toBeInTheDocument();
             expect(screen.getByText('Tradicional')).toBeInTheDocument();
-            expect(screen.getByText('19:30')).toBeInTheDocument();
-            expect(screen.getByText('20:30')).toBeInTheDocument();
+            expect(screen.getByText(/19:30.*às.*21:00/)).toBeInTheDocument();
+            expect(screen.getByText(/20:30.*às.*22:00/)).toBeInTheDocument();
             expect(screen.getByText('João Silva')).toBeInTheDocument();
             expect(screen.getByText('Maria Santos')).toBeInTheDocument();
         });

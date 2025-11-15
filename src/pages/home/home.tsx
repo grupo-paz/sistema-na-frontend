@@ -84,7 +84,7 @@ export const Home = () => {
                                         <div key={meeting.id} className="home-card">
                                             <h3>{meeting.category}</h3>
                                             <div className="home-card-info">
-                                                <p><strong>Horário:</strong> {meeting.time}</p>
+                                                <p><strong>Horário:</strong> {meeting.time} às {meeting.endTime}</p>
                                                 <p><strong>Tipo:</strong> {meeting.type}</p>
                                                 <p><strong>Responsável por abrir:</strong> {meeting.roomOpener}</p>
                                             </div>
@@ -148,7 +148,27 @@ export const Home = () => {
                                         <h3>Chave PIX para Sétima</h3>
                                     </div>
                                     <div className="home-info-content">
-                                        <p className="home-pix-key">contato@exemplo.com</p>
+                                        <div className="home-pix-container">
+                                            <p className="home-pix-key">7agrupopaz@gmail.com</p>
+                                            <button 
+                                                className="home-pix-copy-btn"
+                                                onClick={() => {
+                                                    navigator.clipboard.writeText('7agrupopaz@gmail.com');
+                                                    const btn = document.querySelector('.home-pix-copy-btn');
+                                                    if (btn) {
+                                                        btn.textContent = '✓ Copiado!';
+                                                        setTimeout(() => {
+                                                            btn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>';
+                                                        }, 2000);
+                                                    }
+                                                }}
+                                                title="Copiar chave PIX"
+                                            >
+                                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                                                </svg>
+                                            </button>
+                                        </div>
                                         <p className="home-pix-description">
                                             Use esta chave para contribuir com a sétima do grupo
                                         </p>

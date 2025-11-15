@@ -252,16 +252,55 @@
     color: rgba(255, 255, 255, 0.9);
 }
 
+.home-pix-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
 .home-pix-key {
     font-size: 1.1rem;
     font-weight: 600;
     color: white;
-    margin: 0 0 0.5rem 0;
+    margin: 0;
     padding: 0.75rem;
     background: rgba(102, 126, 234, 0.1);
     border-radius: 8px;
     font-family: 'Courier New', monospace;
     word-break: break-all;
+    flex: 1;
+}
+
+.home-pix-copy-btn {
+    background: rgba(102, 126, 234, 0.2);
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    border-radius: 8px;
+    padding: 0.75rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: white;
+    min-width: 48px;
+    height: 48px;
+}
+
+.home-pix-copy-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+}
+
+.home-pix-copy-btn:hover {
+    background: rgba(102, 126, 234, 0.3);
+    border-color: rgba(102, 126, 234, 0.5);
+    transform: translateY(-2px);
+}
+
+.home-pix-copy-btn:active {
+    transform: translateY(0);
 }
 
 .home-pix-description {

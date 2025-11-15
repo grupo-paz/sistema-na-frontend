@@ -13,6 +13,7 @@ interface MeetingsFormProps {
 interface FormData {
     dayOfWeek: string;
     time: string;
+    endTime: string;
     type: string;
     category: string;
     roomOpener: string;
@@ -27,6 +28,7 @@ const MeetingsForm: React.FC<MeetingsFormProps> = ({ setMeetings }) => {
     const [createForm, setCreateForm] = useState<FormData>({
         dayOfWeek: "",
         time: "",
+        endTime: "",
         type: "",
         category: "",
         roomOpener: ""
@@ -39,6 +41,7 @@ const MeetingsForm: React.FC<MeetingsFormProps> = ({ setMeetings }) => {
         setCreateForm({
             dayOfWeek: "",
             time: "",
+            endTime: "",
             type: "",
             category: "",
             roomOpener: ""
@@ -68,6 +71,7 @@ const MeetingsForm: React.FC<MeetingsFormProps> = ({ setMeetings }) => {
             const meetingData = {
                 dayOfWeek: createForm.dayOfWeek,
                 time: createForm.time,
+                endTime: createForm.endTime,
                 type: createForm.type,
                 category: createForm.category,
                 roomOpener: createForm.roomOpener,
@@ -119,12 +123,22 @@ const MeetingsForm: React.FC<MeetingsFormProps> = ({ setMeetings }) => {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="meeting-time">Horário</label>
+                                <label htmlFor="meeting-time">Horário de Início</label>
                                 <input
                                     id="meeting-time"
                                     type="time"
                                     value={createForm.time}
                                     onChange={(e) => setCreateForm({ ...createForm, time: e.target.value })}
+                                    required
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="meeting-endTime">Horário de Término</label>
+                                <input
+                                    id="meeting-endTime"
+                                    type="time"
+                                    value={createForm.endTime}
+                                    onChange={(e) => setCreateForm({ ...createForm, endTime: e.target.value })}
                                     required
                                 />
                             </div>

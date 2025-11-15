@@ -42,6 +42,7 @@ interface Meeting {
     id: string;
     dayOfWeek: string;
     time: string;
+    endTime: string;
     type: string;
     category: string;
     roomOpener: string;
@@ -57,6 +58,7 @@ describe('MeetingsPage', () => {
             id: '1',
             dayOfWeek: 'Segunda-feira',
             time: '19:30',
+            endTime: '21:00',
             type: 'Presencial',
             category: 'Oração',
             roomOpener: 'João Silva',
@@ -68,6 +70,7 @@ describe('MeetingsPage', () => {
             id: '2',
             dayOfWeek: 'Quarta-feira',
             time: '20:00',
+            endTime: '21:30',
             type: 'Online',
             category: 'Estudo',
             roomOpener: 'Maria Santos',
@@ -79,6 +82,7 @@ describe('MeetingsPage', () => {
             id: '3',
             dayOfWeek: 'Domingo',
             time: '10:00',
+            endTime: '11:30',
             type: 'Presencial',
             category: 'Culto',
             roomOpener: 'Pedro Oliveira',
@@ -285,6 +289,7 @@ describe('MeetingsPage', () => {
                 id: '1',
                 dayOfWeek: 'Segunda-feira',
                 time: '19:30',
+                endTime: '21:00',
                 type: 'Presencial',
                 category: 'Oração',
                 roomOpener: 'João Silva',
@@ -296,6 +301,7 @@ describe('MeetingsPage', () => {
                 id: '2',
                 dayOfWeek: 'Segunda-feira',
                 time: '20:30',
+                endTime: '22:00',
                 type: 'Online',
                 category: 'Estudo',
                 roomOpener: 'Maria Santos',

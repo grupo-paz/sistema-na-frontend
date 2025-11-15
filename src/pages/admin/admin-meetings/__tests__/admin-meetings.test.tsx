@@ -26,6 +26,7 @@ const mockMeeting = {
     id: 'meeting-1',
     dayOfWeek: 'Segunda-feira',
     time: '10:00',
+    endTime: '11:30',
     type: 'Presencial',
     category: 'Reunião de Equipe',
     roomOpener: 'João Silva',

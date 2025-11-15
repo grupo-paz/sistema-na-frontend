@@ -244,7 +244,7 @@ describe('LoginPage', () => {
             });
 
             it('should redirect to admin page when access token exists', () => {
-                expect(mockNavigate).toHaveBeenCalledWith('/admin');
+                expect(mockNavigate).toHaveBeenCalledWith('/admin', { replace: true });
             });
         });
 

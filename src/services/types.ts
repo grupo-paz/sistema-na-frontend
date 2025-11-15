@@ -70,6 +70,7 @@ export interface Meeting {
   id: string;
   dayOfWeek: string;
   time: string;
+  endTime: string;
   type: string;
   category: string;
   roomOpener: string;
@@ -84,6 +85,7 @@ export interface Meeting {
 export interface CreateMeetingBody {
   dayOfWeek: string;
   time: string;
+  endTime: string;
   type: string;
   category: string;
   roomOpener: string;
@@ -92,6 +94,7 @@ export interface CreateMeetingBody {
 export interface UpdateMeetingBody {
   dayOfWeek?: string;
   time?: string;
+  endTime?: string;
   type?: string;
   category?: string;
   roomOpener?: string;

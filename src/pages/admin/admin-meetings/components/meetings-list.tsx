@@ -16,6 +16,7 @@ interface MeetingsListProps {
 interface FormData {
     dayOfWeek: string;
     time: string;
+    endTime: string;
     type: string;
     category: string;
     roomOpener: string;
@@ -31,6 +32,7 @@ const MeetingsList: React.FC<MeetingsListProps> = ({ meetings, setMeetings, onCo
     const [editForm, setEditForm] = useState<FormData>({
         dayOfWeek: "",
         time: "",
+        endTime: "",
         type: "",
         category: "",
         roomOpener: ""
@@ -43,6 +45,7 @@ const MeetingsList: React.FC<MeetingsListProps> = ({ meetings, setMeetings, onCo
         setEditForm({
             dayOfWeek: "",
             time: "",
+            endTime: "",
             type: "",
             category: "",
             roomOpener: ""
@@ -61,6 +64,7 @@ const MeetingsList: React.FC<MeetingsListProps> = ({ meetings, setMeetings, onCo
         setEditForm({
             dayOfWeek: meeting.dayOfWeek,
             time: meeting.time,
+            endTime: meeting.endTime || "",
             type: meeting.type,
             category: meeting.category,
             roomOpener: meeting.roomOpener
@@ -86,6 +90,7 @@ const MeetingsList: React.FC<MeetingsListProps> = ({ meetings, setMeetings, onCo
             const meetingData = {
                 dayOfWeek: editForm.dayOfWeek,
                 time: editForm.time,
+                endTime: editForm.endTime,
                 type: editForm.type,
                 category: editForm.category,
                 roomOpener: editForm.roomOpener,
@@ -169,12 +174,22 @@ const MeetingsList: React.FC<MeetingsListProps> = ({ meetings, setMeetings, onCo
                                             </select>
                                         </div>
                                         <div className="form-group">
-                                            <label htmlFor={`edit-time-${meeting.id}`}>Horário</label>
+                                            <label htmlFor={`edit-time-${meeting.id}`}>Horário de Início</label>
                                             <input
                                                 id={`edit-time-${meeting.id}`}
                                                 type="time"
                                                 value={editForm.time}
                                                 onChange={(e) => setEditForm({ ...editForm, time: e.target.value })}
+                                                required
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor={`edit-endTime-${meeting.id}`}>Horário de Término</label>
+                                            <input
+                                                id={`edit-endTime-${meeting.id}`}
+                                                type="time"
+                                                value={editForm.endTime}
+                                                onChange={(e) => setEditForm({ ...editForm, endTime: e.target.value })}
                                                 required
                                             />
                                         </div>
@@ -249,7 +264,7 @@ const MeetingsList: React.FC<MeetingsListProps> = ({ meetings, setMeetings, onCo
                                 <>
                                     <div className="admin-meeting-info">
                                         <div className="admin-meeting-header">
-                                            <h3>{meeting.dayOfWeek} - {meeting.time}</h3>
+                                            <h3>{meeting.dayOfWeek} - {meeting.time} às {meeting.endTime}</h3>
                                             <span className="admin-meeting-category">{meeting.category}</span>
                                         </div>
                                         <div className="admin-meeting-details">

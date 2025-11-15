@@ -20,6 +20,7 @@ const mockMeeting = {
     id: 'meeting-1',
     dayOfWeek: 'Segunda-feira',
     time: '10:00',
+    endTime: '11:30',
     type: 'Aberta',
     category: 'Tradicional',
     roomOpener: 'João Silva',
@@ -50,7 +51,7 @@ describe('MeetingsList', () => {
         renderList();
         
         expect(screen.getByText('Reuniões Cadastradas')).toBeInTheDocument();
-        expect(screen.getByText('Segunda-feira - 10:00')).toBeInTheDocument();
+        expect(screen.getByText(/Segunda-feira.*-.*10:00.*às.*11:30/)).toBeInTheDocument();
         expect(screen.getByText('Tradicional')).toBeInTheDocument();
         expect(screen.getByText('Aberta')).toBeInTheDocument();
         expect(screen.getByText('Responsável por abrir: João Silva')).toBeInTheDocument();
@@ -69,7 +70,8 @@ describe('MeetingsList', () => {
         fireEvent.click(editButton);
         
         expect(screen.getByLabelText('Dia da Semana')).toBeInTheDocument();
-        expect(screen.getByLabelText('Horário')).toBeInTheDocument();
+        expect(screen.getByLabelText('Horário de Início')).toBeInTheDocument();
+        expect(screen.getByLabelText('Horário de Término')).toBeInTheDocument();
         expect(screen.getByLabelText('Categoria')).toBeInTheDocument();
         expect(screen.getByLabelText('Tipo')).toBeInTheDocument();
         expect(screen.getByLabelText('Responsável por Abrir a Sala')).toBeInTheDocument();
@@ -91,7 +93,8 @@ describe('MeetingsList', () => {
         fireEvent.click(editButton);
         
         fireEvent.change(screen.getByLabelText('Dia da Semana'), { target: { value: 'Terça-feira' } });
-        fireEvent.change(screen.getByLabelText('Horário'), { target: { value: '14:00' } });
+        fireEvent.change(screen.getByLabelText('Horário de Início'), { target: { value: '14:00' } });
+        fireEvent.change(screen.getByLabelText('Horário de Término'), { target: { value: '15:30' } });
         
         fireEvent.click(screen.getByText('Salvar'));
         
@@ -99,6 +102,7 @@ describe('MeetingsList', () => {
             expect(mockServices.updateMeeting).toHaveBeenCalledWith('meeting-1', {
                 dayOfWeek: 'Terça-feira',
                 time: '14:00',
+                endTime: '15:30',
                 type: 'Aberta',
                 category: 'Tradicional',
                 roomOpener: 'João Silva',
@@ -133,7 +137,7 @@ describe('MeetingsList', () => {
         
         fireEvent.click(screen.getByText('Cancelar'));
         
-        expect(screen.getByText('Segunda-feira - 10:00')).toBeInTheDocument();
+        expect(screen.getByText(/Segunda-feira.*-.*10:00.*às.*11:30/)).toBeInTheDocument();
         expect(screen.queryByLabelText('Dia da Semana')).not.toBeInTheDocument();
     });
 });
