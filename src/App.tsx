@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ProtectedRoute } from "./routes"; 
-import { AdminAdministrators, Admin, AdminProfile, AdminMeetings, DefinePassword, Home, LoginPage, AdminChangePassword, AdminSecretary, ForgotPassword, SecretaryPage, EventsPage, MeetingsPage } from "./pages";
+import { AdminAdministrators, Admin, AdminProfile, AdminMeetings, DefinePassword, Home, LoginPage, AdminChangePassword, AdminSecretary, ForgotPassword, SecretaryPage, EventsPage, MeetingsPage, AdminEvents } from "./pages";
 
 const DomainChecker = () => {
     const hostname = window.location.hostname;
