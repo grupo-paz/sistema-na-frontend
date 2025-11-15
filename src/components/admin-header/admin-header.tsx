@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { authStorage } from "../../services";
-import logoImage from "../../assets/na.jpeg";
+import logoImage from '../../../assets/na.jpeg'; // CORREÇÃO: Três níveis acima para alcançar a pasta assets
 
 import "./stylesheets/admin-header.css";
 
@@ -42,7 +42,7 @@ export function AdminHeader() {
         )}
 
         <div className="admin-header-logo" onClick={() => navigate("/")}>
-          {/* CORREÇÃO: Usamos o logoImage importado como a fonte da imagem */}
+          {/* CORREÇÃO: Inclusão da tag <img> usando o módulo Vite importado */}
           <img src={logoImage} alt="Logo GrupoPaz" className="admin-header-logo-img" />
         </div>
 
