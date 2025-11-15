@@ -1,12 +1,12 @@
-import { Navigate } from "react-router-dom";
-import { authStorage } from "../services";
+import { Navigate } from 'react-router-dom';
+import { Home } from '../pages/home/home'; 
 
-export function RootRedirect() {
-  const hasToken = authStorage.getAccessToken();
-
-  if (hasToken) {
-    return <Navigate to="/admin" replace />;
+export default function RootRedirect() {
+  const hostname = window.location.hostname;
+  
+  if (hostname.includes('admin')) { 
+    return <Navigate to="/login" replace />;
   }
-
-  return <Navigate to="/" replace />;
+  
+  return <Home />;
 }
