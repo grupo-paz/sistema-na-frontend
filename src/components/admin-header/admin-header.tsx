@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { authStorage } from "../../services";
+import logoImage from '../../assets/na.jpeg'; // A importação correta
 
 import "./stylesheets/admin-header.css";
 
@@ -40,8 +41,9 @@ export function AdminHeader() {
           </button>
         )}
 
-        <div className="admin-header-logo">
-          <h1>Grupo<b>Paz</b></h1>
+        <div className="admin-header-logo" onClick={() => navigate("/")}>
+          {/* CORREÇÃO: Usamos o logoImage importado como a fonte da imagem */}
+          <img src={logoImage} alt="Logo GrupoPaz" className="admin-header-logo-img" />
         </div>
 
         <nav className={`admin-header-actions ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
