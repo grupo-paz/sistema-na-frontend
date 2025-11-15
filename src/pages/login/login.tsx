@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from "react"
-import { useNavigate, Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { login, authStorage } from "../../services"
 import { AdminHeader } from "../../components"
 
@@ -14,7 +14,7 @@ export function LoginPage() {
 
     useEffect(() => {
         if (authStorage.getAccessToken()) {
-            navigate("/admin/perfil", { replace: true }) 
+            navigate("/admin", { replace: true })
         }
     }, [navigate])
 
@@ -24,7 +24,7 @@ export function LoginPage() {
         setError(null)
         try {
             await login(email, password)
-            navigate("/admin/perfil") 
+            navigate("/admin")
         } catch (err: any) {
             setError(JSON.parse(err.message)?.error || "Falha no login")
         } finally {
